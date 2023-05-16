@@ -1,6 +1,6 @@
 {
   "name": "@jahia/create-jahia-templateset",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "license": "MIT",
   "type": "module",
   "bin": {
