@@ -4,10 +4,10 @@ This project provides an NPM/NPX starter project template to quickly get up and 
 
 ## Usage
 
-npx @jahia/create-jahia-templateset@latest my-template-name
+    npx @jahia/create-jahia-templateset@latest my-template-name
 
 where my-template-name can be anything you want to call your project.
 
 ## Documentation
 
-You can find more documentation about this project on the [Jahia Academy] (https://academy.jahia.com/get-started/developers/templating) templating tutorial.
+You can find more documentation about this project on the [Jahia Academy](https://academy.jahia.com/get-started/developers/templating) templating tutorial.

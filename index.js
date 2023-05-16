@@ -75,3 +75,5 @@ try {
 
 console.log('Success! Your new project is ready.');
 console.log(`Created ${projectName} at ${projectDir}`);
+console.log('You can now change into your project and launch "yarn" to install everything to get started.');
+console.log('You can also check the documentation available here for more details: https://academy.jahia.com/get-started/developers/templating');
