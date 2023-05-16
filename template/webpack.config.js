@@ -15,7 +15,15 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new ExtraWatchWebpackPlugin({
-                files: [ 'src/**/*.hbs' ]
+                files: [ 
+                    'src/**/*.hbs', 
+                    'views/**/*.hbs',
+                    'images/**/*', 
+                    'css/**/*', 
+                    'javascript/**/*',
+                    'locales/**/*.json',
+                    'resources/**/*.properties'
+                ]
             }),
         ],
         devtool: "inline-source-map"
