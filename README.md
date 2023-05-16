@@ -6,7 +6,7 @@ This project provides an NPM/NPX starter project template to quickly get up and 
 
     npx @jahia/create-jahia-templateset@latest my-template-name
 
-where my-template-name can be anything you want to call your project.
+where `my-template-name` can be anything you want to call your project.
 
 ## Documentation
 
