@@ -1,0 +1,15 @@
+{
+  "name": "@jahia/create-jahia-templateset",
+  "version": "0.1.14",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-jahia-templateset": "./index.js"
+  },
+  "dependencies": {
+    "camelcase": "^7.0.1",
+    "path": "^0.12.7",
+    "replace-in-file": "^6.3.5",
+    "url": "^0.11.0"
+  }
+}
