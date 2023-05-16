@@ -22,7 +22,8 @@ module.exports = (env, argv) => {
                     'css/**/*', 
                     'javascript/**/*',
                     'locales/**/*.json',
-                    'resources/**/*.properties'
+                    'resources/**/*.properties',
+                    'definitions.cnd'
                 ]
             }),
         ],
