@@ -1,11 +1,23 @@
 {
   "name": "@jahia/create-jahia-templateset",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "license": "MIT",
   "type": "module",
   "bin": {
     "create-jahia-templateset": "./index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jahia/npm-create-jahia-templateset.git"
+  },
+  "keywords": [
+    "template"
+  ],
+  "author": "Jahia <support@jahia.com>",
+  "bugs": {
+    "url": "https://github.com/Jahia/npm-create-jahia-templateset/issues"
+  },
+  "homepage": "https://github.com/Jahia/npm-create-jahia-templateset#readme",
   "dependencies": {
     "camelcase": "^7.0.1",
     "path": "^0.12.7",
