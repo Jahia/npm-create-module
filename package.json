@@ -1,6 +1,6 @@
 {
   "name": "@jahia/create-jahia-templateset",
-  "version": "0.1.23",
+  "version": "0.1.25",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -31,7 +31,6 @@
   "scripts": {
     "lint": "eslint . --config .eslintrc",
     "posttest": "yarn lint",
-    "prepack": "yarn build",
     "version": "git add README.md"
   },
   "engines": {
