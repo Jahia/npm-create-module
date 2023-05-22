@@ -1,0 +1,20 @@
+name: Publish Release to Registry
+on:
+  release:
+    types: [published]
+
+jobs:
+  npm_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - run: yarn
+      - run: whoami && node -v && ls -lah 
+      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPMJS_PUBLISH_TOKEN }}" > .npmrc
+      - run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
+      - run: ls -lah ./
+      - run: npm publish --access public
