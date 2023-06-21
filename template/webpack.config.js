@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
             new ExtraWatchWebpackPlugin({
                 files: [
                     'src/**/*.hbs',
-                    'views/**/*.hbs',
+                    'components/**/*.hbs',
                     'images/**/*',
                     'css/**/*',
                     'javascript/**/*',
