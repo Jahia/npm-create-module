@@ -1,4 +1,8 @@
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <$$MODULE_NAMESPACE$$ = 'http://www.acme.org/$$MODULE_NAME$$/nt/1.0'>
-<$$MODULE_NAMESPACE$$mix = 'http://www.acme.org/$$MODULE_NAME$$/mix/1.0'>
+
+[$$MODULE_NAMESPACE$$:simple] > jnt:content, jmix:basicContent
+ - prop1 (string)
+ - prop2 (string)
+ + * (jmix:droppableContent)

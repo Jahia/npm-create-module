@@ -16,14 +16,18 @@ module.exports = (env, argv) => {
         plugins: [
             new ExtraWatchWebpackPlugin({
                 files: [
-                    'src/**/*.hbs',
-                    'views/**/*.hbs',
+                    'src/**/*',
+                    'components/**/*',
                     'images/**/*',
                     'css/**/*',
                     'javascript/**/*',
                     'locales/**/*.json',
                     'resources/**/*.properties',
-                    'definitions.cnd'
+                    'definitions.cnd',
+                    'import.xml',
+                    'package.json',
+                    'locales/*',
+                    'resources/*'
                 ]
             }),
         ],
