@@ -12,8 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // The first argument will be the project name.
-// The second argument will be the namespace of the module.
-if (process.argv.length < 4) {
+// The second argument is optional, it will be the namespace of the module.
+if (process.argv.length < 3) {
     console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name namespace');
     process.exit(9);
 }
@@ -21,7 +21,12 @@ if (process.argv.length < 4) {
 const projectName = process.argv[2];
 const camelProjectName = camelCase(projectName);
 
-const namespace = process.argv[3];
+let namespace;
+if (process.argv.length > 3) {
+    namespace = process.argv[3];
+} else {
+    namespace = camelProjectName;
+}
 
 // Create a project directory with the project name.
 const currentDir = process.cwd();
