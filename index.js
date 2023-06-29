@@ -14,8 +14,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // The first argument will be the project name.
+// The second argument is optional, it will be the namespace of the module.
 if (process.argv.length < 3) {
-  console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name')
+  console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name namespace');
   process.exit(9)
 }
 const projectName = process.argv[2]
@@ -30,6 +31,13 @@ console.log('Yarn version:', yarnVersion)
 if (semver.satisfies(yarnVersion, '1.x')) {
   console.log('Yarn classic detected')
   yarnPackageName = '$$$$MODULE_NAME$$$$-v1.0.0.tgz'
+}
+
+let namespace;
+if (process.argv.length > 3) {
+    namespace = process.argv[3];
+} else {
+    namespace = camelProjectName;
 }
 
 // Create a project directory with the project name.
@@ -63,12 +71,19 @@ fs.renameSync(
   path.join(projectDir, 'resources/' + projectName + '.properties')
 )
 
+// rename the resource file to use the project name
+fs.renameSync(
+    path.join(projectDir, 'components/MODULE_NAMESPACE'),
+    path.join(projectDir, 'components/' + namespace)
+);
+
 // find and replace all markers with the appropriate substitution values
 const targetFiles = [
   path.join(projectDir, 'README.md'),
   path.join(projectDir, 'import.xml'),
   path.join(projectDir, 'package.json'),
-  path.join(projectDir, 'definitions.cnd')
+  path.join(projectDir, 'definitions.cnd'),
+  path.join(projectDir, 'components/' + namespace + "/simple/simple.cnd")
 ]
 
 try {
@@ -86,7 +101,13 @@ try {
     files: targetFiles,
     from: /\$\$MODULE_NAME\$\$/g,
     to: projectName
-  })
+  },
+    replace.sync({
+        files: targetFiles,
+        from: /\$\$MODULE_NAMESPACE\$\$/g,
+        to: namespace,
+    });
+              )
 } catch (error) {
   console.error('Error occurred:', error)
 }
