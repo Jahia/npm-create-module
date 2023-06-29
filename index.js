@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Usage: npx @jahia/create-jahia-templateset@latest module-name
+// Usage: npx @jahia/create-jahia-templateset@latest module-name [namespace]
 
 import fs from 'fs';
 import path from 'path';
@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 // The first argument will be the project name.
 // The second argument is optional, it will be the namespace of the module.
 if (process.argv.length < 3) {
-    console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name namespace');
+    console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name [namespace]');
     process.exit(9);
 }
 
