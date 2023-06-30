@@ -1,9 +1,9 @@
 const path = require('path');
-const WebpackShellPlugin = require('./WebpackShellPlugin');
+const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 
-module.exports = (env, argv) => {
-    let config = {
+module.exports = env => {
+    const config = {
         entry: {
             main: path.resolve(__dirname, 'src/index')
         },
@@ -18,6 +18,7 @@ module.exports = (env, argv) => {
                 files: [
                     'src/**/*',
                     'components/**/*',
+                    'views/**/*',
                     'images/**/*',
                     'css/**/*',
                     'javascript/**/*',
@@ -25,28 +26,30 @@ module.exports = (env, argv) => {
                     'resources/**/*.properties',
                     'definitions.cnd',
                     'import.xml',
-                    'package.json',
-                    'locales/*',
-                    'resources/*'
+                    'package.json'
                 ]
-            }),
+            })
         ],
-        devtool: "inline-source-map"
+        devtool: 'inline-source-map'
     };
 
     if (env.deploy) {
         config.plugins.push(
-            new WebpackShellPlugin({
-                onBuildEnd: ['yarn pack && yarn deploy']
+            new WebpackShellPluginNext({
+                onBuildEnd: {
+                    scripts: ['yarn pack && yarn deploy']
+                }
             })
-        )
-    }
-    if (env.remoteDeploy) {
+        );
+    } else if (env.remoteDeploy) {
         config.plugins.push(
-            new WebpackShellPlugin({
-                onBuildEnd: ['yarn pack && yarn remoteDeploy']
+            new WebpackShellPluginNext({
+                onBuildEnd: {
+                    scripts: ['yarn pack && yarn remoteDeploy']
+                }
             })
-        )
+        );
     }
+
     return config;
 };
