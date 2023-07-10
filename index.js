@@ -23,16 +23,10 @@ if (process.argv.length < 3) {
 const projectName = process.argv[2];
 const camelProjectName = camelCase(projectName);
 
-let yarnPackageName = 'package.tgz';
-
 // First let's do some version checks
 console.log('Node version detected:', process.versions.node);
 const yarnVersion = execSync('yarn --version', {encoding: 'utf8'});
 console.log('Yarn version:', yarnVersion);
-if (semver.satisfies(yarnVersion, '1.x')) {
-    console.log('Yarn classic detected');
-    yarnPackageName = '$$$$MODULE_NAME$$$$-v1.0.0.tgz';
-}
 
 let namespace;
 if (process.argv.length > 3) {
@@ -88,11 +82,6 @@ const targetFiles = [
 ];
 
 try {
-    replace.sync({
-        files: targetFiles,
-        from: /\$\$YARN_PACKAGE_NAME\$\$/g,
-        to: yarnPackageName
-    });
     replace.sync({
         files: targetFiles,
         from: /\$\$CAMEL_MODULE_NAME\$\$/g,
