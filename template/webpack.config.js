@@ -37,7 +37,7 @@ module.exports = env => {
         config.plugins.push(
             new WebpackShellPluginNext({
                 onDoneWatch: {
-                    scripts: ['yarn pack && yarn deploy']
+                    scripts: ['yarn pack --out %s-v%v.tgz && yarn deploy']
                 }
             })
         );
@@ -45,7 +45,7 @@ module.exports = env => {
         config.plugins.push(
             new WebpackShellPluginNext({
                 onDoneWatch: {
-                    scripts: ['yarn pack && yarn remoteDeploy']
+                    scripts: ['yarn pack --out %s-v%v.tgz && yarn remoteDeploy']
                 }
             })
         );

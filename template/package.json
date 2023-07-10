@@ -5,10 +5,10 @@
   "scripts": {
     "build": "webpack --mode=development",
     "pwd": "dotenv -- echo $HOST",
-    "doDeploy": "dotenv docker cp package.tgz ${JAHIA_DOCKER_NAME}:/var/jahia/modules",
+    "doDeploy": "dotenv docker cp $$MODULE_NAME$$-v1.0.0.tgz ${JAHIA_DOCKER_NAME}:/var/jahia/modules",
     "deploy": "dotenv yarn doDeploy",
     "watch": "yarn build --env deploy=true --watch",
-    "doRemoteDeploy": "curl -s --user ${JAHIA_USER} --form bundle=@./package.tgz --form start=true ${JAHIA_HOST}/modules/api/bundles",
+    "doRemoteDeploy": "curl -s --user ${JAHIA_USER} --form bundle=@./$$MODULE_NAME$$-v1.0.0.tgz --form start=true ${JAHIA_HOST}/modules/api/bundles",
     "remoteDeploy": "dotenv yarn doRemoteDeploy",
     "remoteWatch": "yarn build --env remoteDeploy=true --watch"
   },
