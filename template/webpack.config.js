@@ -37,15 +37,7 @@ module.exports = env => {
         config.plugins.push(
             new WebpackShellPluginNext({
                 onDoneWatch: {
-                    scripts: ['yarn pack --out %s-v%v.tgz && yarn deploy']
-                }
-            })
-        );
-    } else if (env.remoteDeploy) {
-        config.plugins.push(
-            new WebpackShellPluginNext({
-                onDoneWatch: {
-                    scripts: ['yarn pack --out %s-v%v.tgz && yarn remoteDeploy']
+                    scripts: ['yarn jahia-deploy pack']
                 }
             })
         );
