@@ -7,7 +7,6 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import replace from 'replace-in-file';
 import camelCase from 'camelcase';
-import semver from 'semver';
 import {execSync} from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,16 +22,10 @@ if (process.argv.length < 3) {
 const projectName = process.argv[2];
 const camelProjectName = camelCase(projectName);
 
-let yarnPackageName = 'package.tgz';
-
 // First let's do some version checks
 console.log('Node version detected:', process.versions.node);
 const yarnVersion = execSync('yarn --version', {encoding: 'utf8'});
 console.log('Yarn version:', yarnVersion);
-if (semver.satisfies(yarnVersion, '1.x')) {
-    console.log('Yarn classic detected');
-    yarnPackageName = '$$$$MODULE_NAME$$$$-v1.0.0.tgz';
-}
 
 let namespace;
 if (process.argv.length > 3) {
@@ -62,8 +55,16 @@ fs.renameSync(
     path.join(projectDir, '.gitignore')
 );
 fs.renameSync(
+    path.join(projectDir, 'dotnpmignore'),
+    path.join(projectDir, '.npmignore')
+);
+fs.renameSync(
     path.join(projectDir, 'dotenv'),
     path.join(projectDir, '.env')
+);
+fs.renameSync(
+    path.join(projectDir, 'doteslintrc.cjs'),
+    path.join(projectDir, '.eslintrc.cjs')
 );
 
 // Rename the resource file to use the project name
@@ -90,11 +91,6 @@ const targetFiles = [
 try {
     replace.sync({
         files: targetFiles,
-        from: /\$\$YARN_PACKAGE_NAME\$\$/g,
-        to: yarnPackageName
-    });
-    replace.sync({
-        files: targetFiles,
         from: /\$\$CAMEL_MODULE_NAME\$\$/g,
         to: camelProjectName
     });
@@ -112,7 +108,15 @@ try {
     console.error('Error occurred:', error);
 }
 
-console.log('Success! Your new project is ready.');
 console.log(`Created ${projectName} at ${projectDir}`);
+console.log('Success! Your new project is ready.');
 console.log('You can now change into your project and launch "yarn" to install everything to get started.');
+console.log('---');
+console.log('Available project scripts will then be :');
+console.log('  - yarn build : build the project');
+console.log('  - yarn deploy : deploy the project. Make sure you have updated the .env file to match your setup if needed.');
+console.log('  - yarn watch : will build and watch for file modifications, and deploy automatically when changes are detected. Use CTRL+C to stop watching.');
+console.log('  - yarn lint : use to check that your code follows the recommended syntax guidelines. Append --fix to automatically fix most problems.');
+console.log('  - yarn test : to test your project. By default only performs yarn lint but you are encouraged to add your own testing system here.');
+console.log('---');
 console.log('You can also check the documentation available here for more details: https://academy.jahia.com/get-started/developers/templating');

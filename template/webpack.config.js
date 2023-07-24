@@ -36,16 +36,8 @@ module.exports = env => {
     if (env.deploy) {
         config.plugins.push(
             new WebpackShellPluginNext({
-                onBuildEnd: {
-                    scripts: ['yarn pack && yarn deploy']
-                }
-            })
-        );
-    } else if (env.remoteDeploy) {
-        config.plugins.push(
-            new WebpackShellPluginNext({
-                onBuildEnd: {
-                    scripts: ['yarn pack && yarn remoteDeploy']
+                onDoneWatch: {
+                    scripts: ['yarn jahia-deploy pack']
                 }
             })
         );
