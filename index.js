@@ -93,19 +93,19 @@ try {
         files: targetFiles,
         from: /\$\$CAMEL_MODULE_NAME\$\$/g,
         to: camelProjectName,
-        disableGlobs : true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
+        disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAME\$\$/g,
         to: projectName,
-        disableGlobs : true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
+        disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAMESPACE\$\$/g,
         to: namespace,
-        disableGlobs : true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
+        disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
 } catch (error) {
     console.error('Error occurred:', error);
