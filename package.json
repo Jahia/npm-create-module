@@ -34,7 +34,8 @@
   "scripts": {
     "lint": "eslint .",
     "posttest": "yarn lint",
-    "test": "rm -rf test-project && node index.js test-project && cd test-project && yarn && yarn build && yarn test && cd ..",
+    "test-hbs": "rm -rf test-project && node index.js test-project handlebars && cd test-project && yarn && yarn build && yarn test && cd ..",
+    "test-jsx": "rm -rf test-project && node index.js test-project jsx && cd test-project && yarn && yarn build && yarn test && cd ..",
     "version": "git add README.md"
   },
   "engines": {
