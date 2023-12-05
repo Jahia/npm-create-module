@@ -52,7 +52,7 @@ module.exports = env => {
         },
         plugins: [
             new ModuleFederationPlugin({
-                name: 'npm-solid-react-templateset-tuto',
+                name: $$MODULE_NAME$$,
                 library: {type: 'assign', name: 'window.appShell = (typeof appShell === "undefined" ? {} : appShell); window.appShell[\'npm-solid-react-templateset\']'},
                 filename: '../javascript/remote.js',
                 exposes: {

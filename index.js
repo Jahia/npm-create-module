@@ -97,7 +97,8 @@ const targetFiles = [
     path.join(projectDir, 'import.xml'),
     path.join(projectDir, 'package.json'),
     path.join(projectDir, 'definitions.cnd'),
-    path.join(projectDir, 'components/' + namespace + '/simple/simple.cnd')
+    path.join(projectDir, 'components/' + namespace + '/simple/simple.cnd'),
+    path.join(projectDir, 'jsx/webpack.client.js')
 ];
 
 try {
