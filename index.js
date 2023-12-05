@@ -30,7 +30,7 @@ const yarnVersion = execSync('yarn --version', {encoding: 'utf8'});
 console.log('Yarn version:', yarnVersion);
 
 let projectType;
-if(process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
+if (process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
     projectType = process.argv[3];
 } else {
     console.error(`Invalid module-type parameter, should be handlebars or jsx, got:${process.argv[3]}. Ex: npx @jahia/create-jahia-templateset@latest module-name module-type [namespace]`);
@@ -84,7 +84,7 @@ fs.renameSync(
 );
 
 // Rename the resource file to use the project name
-if(process.argv[3] == 'handlebars') {
+if (process.argv[3] === 'handlebars') {
     fs.renameSync(
         path.join(projectDir, 'components/MODULE_NAMESPACE'),
         path.join(projectDir, 'components/' + namespace)
