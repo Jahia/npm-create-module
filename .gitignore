@@ -4,3 +4,4 @@ test-project
 .yarn
 .pnp*
 .yarnrc.yml
+**.tgz
