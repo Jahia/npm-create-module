@@ -1,6 +1,6 @@
 {
   "name": "@jahia/create-jahia-templateset",
-  "version": "0.1.31",
+  "version": "0.2.0",
   "license": "MIT",
   "type": "module",
   "bin": "./index.js",
@@ -34,12 +34,13 @@
   "scripts": {
     "lint": "eslint .",
     "posttest": "yarn lint",
-    "test": "rm -rf test-project && node index.js test-project && cd test-project && yarn && yarn build && yarn test && cd ..",
+    "test-hbs": "rm -rf test-project && node index.js test-project handlebars && cd test-project && yarn && yarn build && yarn test && cd ..",
+    "test-jsx": "rm -rf test-project && node index.js test-project jsx && cd test-project && yarn && yarn build && yarn test && cd ..",
     "version": "git add README.md"
   },
   "engines": {
     "node": ">=16.0.0",
     "yarn": ">=3.0.0"
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@4.0.2"
 }

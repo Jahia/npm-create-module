@@ -9,13 +9,15 @@ import replace from 'replace-in-file';
 import camelCase from 'camelcase';
 import {execSync} from 'child_process';
 
+const maxArgsLength = 3;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // The first argument will be the project name.
-// The second argument is optional, it will be the namespace of the module.
-if (process.argv.length < 3) {
-    console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name [namespace]');
+// The second argument will be the project type (handlebars or jsx)
+// The third argument is optional, it will be the namespace of the module.
+if (process.argv.length < maxArgsLength) {
+    console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name module-type [namespace]');
     process.exit(9);
 }
 
@@ -27,9 +29,17 @@ console.log('Node version detected:', process.versions.node);
 const yarnVersion = execSync('yarn --version', {encoding: 'utf8'});
 console.log('Yarn version:', yarnVersion);
 
+let projectType;
+if (process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
+    projectType = process.argv[3];
+} else {
+    console.error(`Invalid module-type parameter, should be handlebars or jsx, got:${process.argv[3]}. Ex: npx @jahia/create-jahia-templateset@latest module-name module-type [namespace]`);
+    process.exit(9);
+}
+
 let namespace;
-if (process.argv.length > 3) {
-    namespace = process.argv[3];
+if (process.argv.length > maxArgsLength) {
+    namespace = process.argv[maxArgsLength];
 } else {
     namespace = camelProjectName;
 }
@@ -42,7 +52,7 @@ fs.mkdirSync(projectDir, {recursive: true});
 // A common approach to building a starter template is to
 // create a `template` folder which will house the template
 // and the files we want to create.
-const templateDir = path.resolve(__dirname, 'template');
+const templateDir = path.resolve(__dirname, projectType);
 fs.cpSync(templateDir, projectDir, {recursive: true});
 
 // It is good practice to have dotfiles stored in the
@@ -74,10 +84,12 @@ fs.renameSync(
 );
 
 // Rename the resource file to use the project name
-fs.renameSync(
-    path.join(projectDir, 'components/MODULE_NAMESPACE'),
-    path.join(projectDir, 'components/' + namespace)
-);
+if (process.argv[3] === 'handlebars') {
+    fs.renameSync(
+        path.join(projectDir, 'components/MODULE_NAMESPACE'),
+        path.join(projectDir, 'components/' + namespace)
+    );
+}
 
 // Find and replace all markers with the appropriate substitution values
 const targetFiles = [
@@ -85,7 +97,7 @@ const targetFiles = [
     path.join(projectDir, 'import.xml'),
     path.join(projectDir, 'package.json'),
     path.join(projectDir, 'definitions.cnd'),
-    path.join(projectDir, 'components/' + namespace + '/simple/simple.cnd')
+    path.join(projectDir, process.argv[3] === 'handlebars' ? 'components/' + namespace + '/simple/simple.cnd' : 'webpack.client.js')
 ];
 
 try {
@@ -95,12 +107,14 @@ try {
         to: camelProjectName,
         disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
+
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAME\$\$/g,
         to: projectName,
         disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
+
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAMESPACE\$\$/g,
