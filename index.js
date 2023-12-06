@@ -107,7 +107,7 @@ try {
         to: camelProjectName,
         disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
-    
+
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAME\$\$/g,
