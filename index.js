@@ -97,8 +97,7 @@ const targetFiles = [
     path.join(projectDir, 'import.xml'),
     path.join(projectDir, 'package.json'),
     path.join(projectDir, 'definitions.cnd'),
-    path.join(projectDir, 'components/' + namespace + '/simple/simple.cnd'),
-    path.join(projectDir, 'jsx/webpack.client.js')
+    path.join(projectDir, process.argv[3] === 'handlebars' ? 'components/' + namespace + '/simple/simple.cnd' : 'webpack.client.js')
 ];
 
 try {
@@ -108,12 +107,14 @@ try {
         to: camelProjectName,
         disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
+    
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAME\$\$/g,
         to: projectName,
         disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
     });
+
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAMESPACE\$\$/g,

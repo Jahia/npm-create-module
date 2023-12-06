@@ -53,7 +53,7 @@ module.exports = env => {
         plugins: [
             new ModuleFederationPlugin({
                 name: '$$MODULE_NAME$$',
-                library: {type: 'assign', name: 'window.appShell = (typeof appShell === "undefined" ? {} : appShell); window.appShell[\'npm-solid-react-templateset\']'},
+                library: {type: 'assign', name: 'window.appShell = (typeof appShell === "undefined" ? {} : appShell); window.appShell[\'$$MODULE_NAME$$\']'},
                 filename: '../javascript/remote.js',
                 exposes: {
                     // eslint-disable-next-line camelcase
