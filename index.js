@@ -9,14 +9,13 @@ import replace from 'replace-in-file';
 import camelCase from 'camelcase';
 import {execSync} from 'child_process';
 
-const maxArgsLength = 3;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // The first argument will be the project name.
 // The second argument will be the project type (handlebars or jsx)
 // The third argument is optional, it will be the namespace of the module.
-if (process.argv.length < maxArgsLength) {
+if (process.argv.length < 3) {
     console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name module-type [namespace]');
     process.exit(9);
 }
@@ -38,8 +37,8 @@ if (process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
 }
 
 let namespace;
-if (process.argv.length > maxArgsLength) {
-    namespace = process.argv[maxArgsLength];
+if (process.argv.length > 3) {
+    namespace = process.argv[4];
 } else {
     namespace = camelProjectName;
 }
