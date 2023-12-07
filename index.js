@@ -43,10 +43,6 @@ if (process.argv.length > 4) {
     namespace = camelProjectName;
 }
 
-console.log(process.argv.length);
-console.log(namespace);
-console.log(camelProjectName);
-
 // Create a project directory with the project name.
 const currentDir = process.cwd();
 const projectDir = path.resolve(currentDir, projectName);
