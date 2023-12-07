@@ -1,4 +1,4 @@
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
-<solidTemplate = 'http://www.acme.org/solid-template-react/nt/1.0'>
-<solidTemplatemix = 'http://www.acme.org/solid-template-react/mix/1.0'>
+<$$MODULE_NAMESPACE$$ = 'http://www.acme.org/$$MODULE_NAME$$/nt/1.0'>
+<$$MODULE_NAMESPACE$$mix = 'http://www.acme.org/$$MODULE_NAME$$/mix/1.0'>

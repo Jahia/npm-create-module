@@ -37,11 +37,14 @@ if (process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
 }
 
 let namespace;
-if (process.argv.length > 3) {
+if (process.argv.length > 4) {
     namespace = process.argv[4];
 } else {
     namespace = camelProjectName;
 }
+console.log(process.argv.length);
+console.log(namespace);
+console.log(camelProjectName);
 
 // Create a project directory with the project name.
 const currentDir = process.cwd();
