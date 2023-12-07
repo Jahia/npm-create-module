@@ -42,6 +42,7 @@ if (process.argv.length > 4) {
 } else {
     namespace = camelProjectName;
 }
+
 console.log(process.argv.length);
 console.log(namespace);
 console.log(camelProjectName);
