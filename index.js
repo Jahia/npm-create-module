@@ -82,6 +82,11 @@ fs.renameSync(
     path.join(projectDir, 'resources/' + projectName + '.properties')
 );
 
+fs.renameSync(
+    path.join(projectDir, 'resources/MODULE_NAME_fr.properties'),
+    path.join(projectDir, 'resources/' + projectName + '_fr.properties')
+);
+
 // Rename the resource file to use the project name
 if (process.argv[3] === 'handlebars') {
     fs.renameSync(
@@ -96,7 +101,9 @@ const targetFiles = [
     path.join(projectDir, 'import.xml'),
     path.join(projectDir, 'package.json'),
     path.join(projectDir, 'definitions.cnd'),
-    path.join(projectDir, process.argv[3] === 'handlebars' ? 'components/' + namespace + '/simple/simple.cnd' : 'webpack.client.js')
+    path.join(projectDir, 'resources/' + projectName + '.properties'),
+    path.join(projectDir, 'resources/' + projectName + '_fr.properties'),
+    path.join(projectDir, process.argv[3] === 'handlebars' ? 'components/' + namespace + '/hello/hello.cnd' : 'src/components/example/HelloWorld.jsx')
 ];
 
 try {
