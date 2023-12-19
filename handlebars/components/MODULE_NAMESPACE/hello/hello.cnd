@@ -2,7 +2,5 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <$$MODULE_NAMESPACE$$ = 'http://www.acme.org/$$MODULE_NAME$$/nt/1.0'>
 
-[$$MODULE_NAMESPACE$$:simple] > jnt:content, jmix:basicContent
- - prop1 (string)
- - prop2 (string)
- + * (jmix:droppableContent)
+[$$MODULE_NAMESPACE$$:hello] > jnt:content, jmix:droppableContent
+ - textHello (string) = 'Hello world !' i18n
