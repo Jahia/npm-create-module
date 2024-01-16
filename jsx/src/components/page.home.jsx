@@ -20,10 +20,8 @@ export const PageHome = () => {
 
 PageHome.jahiaComponent = {
     id: 'page_home',
-    target: 'jnt:page',
-    templateName: 'home',
+    nodeType: 'jnt:page',
+    name: 'home',
     displayName: 'Home React template',
-    properties: {
-        template: 'true'
-    }
+    componentType: 'template'
 }
