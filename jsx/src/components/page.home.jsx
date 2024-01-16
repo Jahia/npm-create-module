@@ -1,5 +1,5 @@
 import React from 'react';
-import {JRender} from '@jahia/server-jsx';
+import {JRender} from '@jahia/js-server-engine';
 
 export const PageHome = () => {
     return (<>
