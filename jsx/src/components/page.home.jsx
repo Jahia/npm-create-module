@@ -1,5 +1,5 @@
 import React from 'react';
-import {JRender} from '@jahia/js-server-engine';
+import {JArea} from '@jahia/js-server-engine';
 
 export const PageHome = () => {
     return (<>
@@ -9,10 +9,7 @@ export const PageHome = () => {
         <body>
             <h1>Home Template</h1>
             <main>
-                <JRender content={{
-                        name: "pagecontent",
-                        nodeType: "jnt:area"
-                }}/>
+                <JArea name="pagecontent" />
             </main>
         </body>
     </>);
