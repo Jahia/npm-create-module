@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/Jahia/npm-create-jahia-templateset#readme",
   "dependencies": {
-    "camelcase": "^7.0.1",
+    "camelcase": "^8.0.0",
     "path": "^0.12.7",
     "replace-in-file": "^7.0.1",
-    "semver": "^7.5.3",
+    "semver": "^7.5.4",
     "url": "^0.11.1"
   },
   "devDependencies": {
@@ -34,9 +34,9 @@
   "scripts": {
     "lint": "eslint .",
     "posttest": "yarn lint",
-    "test-hbs": "rm -rf test-project && node index.js test-project handlebars && cd test-project && yarn && yarn build && yarn lint && yarn test && cd ..",
-    "test-jsx": "rm -rf test-project && node index.js test-project jsx && cd test-project && yarn && yarn build && yarn lint && yarn test && cd ..",
-    "test": "yarn test-hbs && yarn test-jsx",
+    "test-hbs": "rm -rf test-project-hbs && node index.js test-project-hbs handlebars && cd test-project-hbs && yarn && yarn build && yarn lint && yarn test && cd ..",
+    "test-jsx": "rm -rf test-project-jsx && node index.js test-project-jsx jsx && cd test-project-jsx && yarn && yarn build && yarn lint && yarn test && cd ..",
+    "test" : "yarn test-hbs && yarn test-jsx",
     "version": "git add README.md"
   },
   "engines": {
