@@ -36,6 +36,7 @@
     "posttest": "yarn lint",
     "test-hbs": "rm -rf test-project && node index.js test-project handlebars && cd test-project && yarn && yarn build && yarn lint && yarn test && cd ..",
     "test-jsx": "rm -rf test-project && node index.js test-project jsx && cd test-project && yarn && yarn build && yarn lint && yarn test && cd ..",
+    "test": "yarn test-hbs && yarn test-jsx",
     "version": "git add README.md"
   },
   "engines": {
