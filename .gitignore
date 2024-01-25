@@ -1,5 +1,7 @@
 /node_modules
 test-project
+test-project-hbs
+test-project-jsx
 .idea
 .yarn
 .pnp*
