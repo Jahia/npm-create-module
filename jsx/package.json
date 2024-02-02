@@ -8,11 +8,14 @@
     "deploy": "jahia-deploy pack",
     "watch": "yarn build --env deploy=true --watch",
     "lint": "eslint .",
-    "test": "yarn lint"
+    "test": "yarn lint", 
+    "postinstall": "yarn dlx @yarnpkg/sdks vscode"    
   },
   "jahia": {
+    "module-dependencies" : "default",
     "module-type": "templatesSet",
-    "server": "dist/main.js"
+    "server": "dist/main.js",
+    "static-resources" : "/css,/images,/javascript"
   },
   "dependencies": {
     "@apollo/client": "3.5.5",
@@ -38,6 +41,7 @@
     "eslint-plugin-react-hooks": "latest",
     "extra-watch-webpack-plugin": "^1.0.3",
     "styled-jsx": "^5.1.2",
+    "typescript": "^5.3.3",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-shell-plugin-next": "^2.3.1"
@@ -46,5 +50,5 @@
     "node": ">=16.0.0",
     "yarn": ">=3.0.0"
   },
-  "packageManager": "yarn@4.0.1"
+  "packageManager": "yarn@4.1.0"
 }
