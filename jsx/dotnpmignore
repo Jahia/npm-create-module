@@ -2,3 +2,9 @@
 .eslintrc.cjs
 .idea
 *.tgz
+.yarn
+.vscode
+webpack.config.js
+README.md
+settings/README.txt
+src

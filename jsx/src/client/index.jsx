@@ -1,0 +1,1 @@
+// Insert here your client code and load it from your templates using a JAddResources tag

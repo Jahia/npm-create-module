@@ -103,8 +103,13 @@ const targetFiles = [
     path.join(projectDir, 'definitions.cnd'),
     path.join(projectDir, 'resources/' + projectName + '.properties'),
     path.join(projectDir, 'resources/' + projectName + '_fr.properties'),
-    path.join(projectDir, process.argv[3] === 'handlebars' ? 'components/' + namespace + '/hello/hello.cnd' : 'src/components/example/HelloWorld.jsx')
+    path.join(projectDir, projectType === 'handlebars' ? 'components/' + namespace + '/hello/hello.cnd' : 'src/server/views/hello/HelloWorld.jsx')
 ];
+
+if (projectType === 'jsx') {
+    targetFiles.push(path.join(projectDir, 'src/server/templates/page.home.jsx'));
+    targetFiles.push(path.join(projectDir, 'src/server/views/hello/HelloWorld.jsx'));
+}
 
 try {
     replace.sync({
