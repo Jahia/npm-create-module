@@ -95,6 +95,15 @@ if (process.argv[3] === 'handlebars') {
     );
 }
 
+// Create empty directories for static resources and configurations
+fs.mkdirSync(path.join(projectDir, 'css'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'images'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'javascript'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'settings/configurations'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'settings/jahia-content-editor-forms'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'settings/jahia-content-editor-forms/forms'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'settings/jahia-content-editor-forms/fieldsets'), {recursive: true});
+
 // Find and replace all markers with the appropriate substitution values
 const targetFiles = [
     path.join(projectDir, 'README.md'),

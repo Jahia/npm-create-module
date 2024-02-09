@@ -3,7 +3,9 @@ test-project
 test-project-hbs
 test-project-jsx
 .idea
-.yarn
+.yarn/cache
+.yarn/install-state.gz
+.yarn/unplugged
 .pnp*
 .yarnrc.yml
 **.tgz
