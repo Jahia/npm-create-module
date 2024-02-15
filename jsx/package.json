@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode=development",
+    "build:production": "webpack --mode=production",
     "deploy": "jahia-deploy pack",
     "watch": "yarn build --env deploy=true --watch",
     "lint": "eslint .",
@@ -12,17 +13,18 @@
     "postinstall": "yarn dlx @yarnpkg/sdks vscode"    
   },
   "jahia": {
-    "module-dependencies" : "default",
+    "module-dependencies": "default",
     "module-type": "templatesSet",
     "server": "dist/main.js",
-    "static-resources" : "/css,/images,/javascript"
+    "static-resources": "/css,/images,/javascript,/locales"
   },
   "dependencies": {
     "@apollo/client": "3.5.5",
     "@jahia/data-helper": "1.0.4",
-    "@jahia/js-server-engine" : "^1.2.2",
+    "@jahia/js-server-engine": "^1.2.2",
     "graphql": "^16.7.1",
-    "react": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

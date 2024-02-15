@@ -25,6 +25,7 @@ module.exports = env => {
                     'javascript/**/*',
                     'locales/**/*.json',
                     'resources/**/*.properties',
+                    'settings/**/*',
                     'definitions.cnd',
                     'import.xml',
                     'package.json'
