@@ -12,7 +12,7 @@ export const HelloDefault = () => {
 }
 
 HelloDefault.jahiaComponent = { // this object is used to register the view in Jahia
-    id: '$$MODULE_NAMESPACE$$_hello_HelloDefault', // A globally unique identifier use to register the view
+    id: '$$MODULE_NAMESPACE$$_views_hello_HelloDefault', // A globally unique identifier use to register the view
     nodeType: '$$MODULE_NAMESPACE$$:hello', // The content node type the template applies to
     displayName: 'Hello (default)', // The display name of the view
     componentType: 'view' // the component type is set to view (as opposed to template component types)
