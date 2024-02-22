@@ -111,13 +111,16 @@ const targetFiles = [
     path.join(projectDir, 'package.json'),
     path.join(projectDir, 'definitions.cnd'),
     path.join(projectDir, 'resources/' + projectName + '.properties'),
-    path.join(projectDir, 'resources/' + projectName + '_fr.properties'),
-    path.join(projectDir, projectType === 'handlebars' ? 'components/' + namespace + '/hello/hello.cnd' : 'src/server/views/hello/HelloDefault.jsx')
+    path.join(projectDir, 'resources/' + projectName + '_fr.properties')
 ];
 
 if (projectType === 'jsx') {
     targetFiles.push(path.join(projectDir, 'src/server/templates/page/PageHome.jsx'));
     targetFiles.push(path.join(projectDir, 'src/server/views/hello/HelloDefault.jsx'));
+}
+
+if (projectType === 'handlebars') {
+    targetFiles.push(path.join(projectDir, 'components/' + namespace + '/hello/hello.cnd'));
 }
 
 try {
