@@ -1,7 +1,7 @@
 import React from 'react'
 import { useServerContext, getNodeProps } from '@jahia/js-server-engine'
 
-export const HelloComponent = () => {
+export const HelloDefault = () => {
     const { currentNode } = useServerContext();
     const props = getNodeProps(currentNode, ['textHello']);
     return (
@@ -11,9 +11,9 @@ export const HelloComponent = () => {
     )
 }
 
-HelloComponent.jahiaComponent = { // this object is used to register the view in Jahia
-    id: '$$MODULE_NAMESPACE$$_helloComponent', // A globally unique identifier use to register the view
+HelloDefault.jahiaComponent = { // this object is used to register the view in Jahia
+    id: '$$MODULE_NAMESPACE$$_views_hello_HelloDefault', // A globally unique identifier use to register the view
     nodeType: '$$MODULE_NAMESPACE$$:hello', // The content node type the template applies to
-    displayName: 'Hello Component', // The display name of the view
+    displayName: 'Hello (default)', // The display name of the view
     componentType: 'view' // the component type is set to view (as opposed to template component types)
 }
