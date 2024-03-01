@@ -6,6 +6,40 @@ module.exports = env => {
     let configs = [
         {
             entry: {
+                main: './src/client'
+            },
+            output: {
+                path: path.resolve(__dirname, 'javascript')
+            },
+            resolve: {
+                mainFields: ['module', 'main'],
+                extensions: ['.mjs', '.js', '.jsx']
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.jsx$/,
+                        include: [path.join(__dirname, 'src/client')],
+                        use: {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: [
+                                    ['@babel/preset-env', {modules: false, targets: {safari: '7', ie: '10'}}],
+                                    '@babel/preset-react'
+                                ],
+                                plugins: [
+                                    'styled-jsx/babel'
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            devtool: 'inline-source-map',
+            mode: 'development'
+        },
+        {
+            entry: {
                 main: path.resolve(__dirname, 'src/server')
             },
             output: {
@@ -71,40 +105,6 @@ module.exports = env => {
             ],
             devtool: 'inline-source-map',
             mode: 'development'
-        },
-        {
-            entry: {
-                main: './src/client'
-            },
-            output: {
-                path: path.resolve(__dirname, 'javascript')
-            },
-            resolve: {
-                mainFields: ['module', 'main'],
-                extensions: ['.mjs', '.js', '.jsx']
-            },
-            module: {
-                rules: [
-                    {
-                        test: /\.jsx$/,
-                        include: [path.join(__dirname, 'src/client')],
-                        use: {
-                            loader: 'babel-loader',
-                            options: {
-                                presets: [
-                                    ['@babel/preset-env', {modules: false, targets: {safari: '7', ie: '10'}}],
-                                    '@babel/preset-react'
-                                ],
-                                plugins: [
-                                    'styled-jsx/babel'
-                                ]
-                            }
-                        }
-                    }
-                ]
-            },
-            devtool: 'inline-source-map',
-            mode: 'development'
         }
     ];
 
@@ -115,7 +115,7 @@ module.exports = env => {
     });
 
     if (env.deploy) {
-        let config = configs[0];
+        let config = configs[configs.length - 1];
         if (!config.plugins) {
             config.plugins = [];
         }
