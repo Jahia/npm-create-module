@@ -117,6 +117,8 @@ const targetFiles = [
 if (projectType === 'jsx') {
     targetFiles.push(path.join(projectDir, 'src/server/templates/page/PageHome.jsx'));
     targetFiles.push(path.join(projectDir, 'src/server/views/hello/HelloDefault.jsx'));
+    targetFiles.push(path.join(projectDir, 'src/client/index.jsx'));
+    targetFiles.push(path.join(projectDir, 'webpack.config.js'));
 }
 
 if (projectType === 'handlebars') {

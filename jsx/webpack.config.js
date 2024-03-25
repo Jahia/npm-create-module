@@ -1,15 +1,31 @@
+const fs = require('fs');
 const path = require('path');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+
+const deps = require('./package.json').dependencies;
+
+// Read all files in the client components directory in order to expose them with webpack module federation more easily
+// Those components are exposed in order to be hydrate/rendered client side
+const componentsDir = './src/client';
+const exposes = {};
+fs.readdirSync(componentsDir).forEach(file => {
+    if (file !== 'index.js') {
+        const componentName = path.basename(file, path.extname(file));
+        exposes[componentName] = path.resolve(componentsDir, file);
+    }
+});
+const moduleName = '$$MODULE_NAME$$';
 
 module.exports = env => {
     let configs = [
         {
             entry: {
-                main: './src/client'
+                [moduleName]: path.resolve(__dirname, './src/client/index')
             },
             output: {
-                path: path.resolve(__dirname, 'javascript')
+                path: path.resolve(__dirname, 'javascript/client')
             },
             resolve: {
                 mainFields: ['module', 'main'],
@@ -35,6 +51,22 @@ module.exports = env => {
                     }
                 ]
             },
+            plugins: [
+                new ModuleFederationPlugin({
+                    name: moduleName,
+                    library: {type: 'assign', name: `window.appShell = (typeof appShell === "undefined" ? {} : appShell); window.appShell['${moduleName}']`},
+                    filename: '../client/remote.js',
+                    exposes: exposes,
+                    shared: {
+                        react: {
+                            requiredVersion: deps.react,
+                            singleton: true
+                        },
+                        'react-i18next': {},
+                        i18next: {}
+                    }
+                })
+            ],
             devtool: 'inline-source-map',
             mode: 'development'
         },
@@ -58,7 +90,10 @@ module.exports = env => {
                 rules: [
                     {
                         test: /\.jsx$/,
-                        include: [path.join(__dirname, 'src/server')],
+                        include: [
+                            path.join(__dirname, 'src/server'),
+                            path.join(__dirname, 'src/client')
+                        ],
                         use: {
                             loader: 'babel-loader',
                             options: {
