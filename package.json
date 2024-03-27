@@ -1,21 +1,21 @@
 {
-  "name": "@jahia/create-jahia-module",
+  "name": "@jahia/create-module",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "bin": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jahia/npm-create-jahia-module.git"
+    "url": "git+https://github.com/Jahia/npm-create-module.git"
   },
   "keywords": [
     "template"
   ],
   "author": "Jahia <support@jahia.com>",
   "bugs": {
-    "url": "https://github.com/Jahia/npm-create-jahia-module/issues"
+    "url": "https://github.com/Jahia/npm-create-module/issues"
   },
-  "homepage": "https://github.com/Jahia/npm-create-jahia-module#readme",
+  "homepage": "https://github.com/Jahia/npm-create-module#readme",
   "dependencies": {
     "camelcase": "^8.0.0",
     "path": "^0.12.7",
