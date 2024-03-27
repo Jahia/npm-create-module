@@ -1,10 +1,10 @@
-# NPM Module template create-module
+# NPM Module template create-module project
 
-This project provides an NPM/NPX starter project template to quickly get up and running to create Jahia NPM template sets
+This project provides an NPM/NPX starter project template to quickly get up and running to create Jahia NPM modules
 
 ## Usage
 
-    npx @jahia/create-module@latest my-template-name my-template-type
+    npx @jahia/create-module@latest my-module-name my-module-type
 
-where `my-template-name` can be anything you want to call your project
-and `my-template-type`is jsx or handlebars
+where `my-module-name` can be anything you want to call your project
+and `my-module-type`is jsx or handlebars
