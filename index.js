@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Usage: npx @jahia/create-jahia-templateset@latest module-name [namespace]
+// Usage: npx @jahia/create-jahia-module@latest module-name [namespace]
 
 import fs from 'fs';
 import path from 'path';
@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 // The second argument will be the project type (handlebars or jsx)
 // The third argument is optional, it will be the namespace of the module.
 if (process.argv.length < 3) {
-    console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-templateset@latest module-name module-type [namespace]');
+    console.error('Missing module-name parameter. Ex: npx @jahia/create-jahia-module@latest module-name module-type [namespace]');
     process.exit(9);
 }
 
@@ -32,7 +32,7 @@ let projectType;
 if (process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
     projectType = process.argv[3];
 } else {
-    console.error(`Invalid module-type parameter, should be handlebars or jsx, got:${process.argv[3]}. Ex: npx @jahia/create-jahia-templateset@latest module-name module-type [namespace]`);
+    console.error(`Invalid module-type parameter, should be handlebars or jsx, got:${process.argv[3]}. Ex: npx @jahia/create-jahia-module@latest module-name module-type [namespace]`);
     process.exit(9);
 }
 
