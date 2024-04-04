@@ -1,5 +1,5 @@
 import React from 'react';
-import {Area, AddResources} from '@jahia/js-server-engine';
+import {Area, AddResources} from '@jahia/js-server-core';
 
 export const PageHome = () => {
     return (<>
