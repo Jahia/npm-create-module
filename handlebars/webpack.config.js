@@ -11,8 +11,8 @@ module.exports = env => {
             path: path.resolve(__dirname, 'dist')
         },
         externals: {
-            '@jahia/js-server-engine': 'jsServerEngineLibraryBuilder.getLibrary()',
-            handlebars: 'jsServerEngineLibraryBuilder.getSharedLibrary(\'handlebars\')'
+            '@jahia/js-server-core': 'jsServerCoreLibraryBuilder.getLibrary()',
+            handlebars: 'jsServerCoreLibraryBuilder.getSharedLibrary(\'handlebars\')'
         },
         plugins: [
             new ExtraWatchWebpackPlugin({

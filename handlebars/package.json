@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "handlebars": "^4.7.7",
-    "@jahia/js-server-engine" : "^1.2.2"
+    "@jahia/js-server-core" : "^0.0.4"
   },
   "engines": {
     "node": ">=16.0.0",
