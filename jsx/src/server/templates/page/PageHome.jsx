@@ -1,14 +1,17 @@
 import React from 'react';
 import {Area, AddResources} from '@jahia/js-server-core';
+import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
+    const {t} = useTranslation();
     return (<>
         <head>
             <AddResources type='css' resources='styles.css' />
             <title>Home</title>
         </head>
         <body>
-            <h1>Home Template</h1>
+            {/* Using i18next defined in locales */}
+            <h1>{t('homeTitle')}</h1>
             <main>
                 <Area name="pagecontent" />
             </main>
@@ -16,9 +19,17 @@ export const PageHome = () => {
     </>);
 }
 
-PageHome.jahiaComponent = { // This object is used to register the template in Jahia
-    nodeType: 'jnt:page', // The content node type the template applies to
-    name: 'home', // The name of the template
-    displayName: 'Home page', // The display name of the page template
-    componentType: 'template' // the component type is set to template (as opposed to view component types)
+/*
+* jahiaComponent object is used to register the template in Jahia
+* nodeType: The content node type the template applies to
+* name: The name of the template (optional)
+* displayName: The display name of the page template (optional)
+* componentType: the component type is set to template (as opposed to view component types)
+*/
+
+PageHome.jahiaComponent = { 
+    nodeType: 'jnt:page', 
+    name: 'home', 
+    displayName: 'Home page', 
+    componentType: 'template' 
 }

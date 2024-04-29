@@ -1,6 +1,6 @@
 {
   "name": "$$MODULE_NAME$$",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -14,7 +14,8 @@
   },
   "jahia": {
     "module-dependencies": "default",
-    "module-type": "templatesSet",
+    "module-type": "",
+    "module-type-comment": "Use templatesSet in the module type to declare a template set",
     "server": "dist/main.js",
     "static-resources": "/css,/images,/javascript,/locales"
   },
@@ -24,7 +25,9 @@
     "@jahia/js-server-core": "^0.0.7",
     "graphql": "^16.7.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "i18next": "^23.10.1",
+    "react-i18next": "^14.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
@@ -49,8 +52,8 @@
     "webpack-shell-plugin-next": "^2.3.1"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "yarn": ">=3.0.0"
+    "node": ">=18.0.0",
+    "yarn": ">=4.0.0"
   },
   "packageManager": "yarn@4.1.0"
 }
