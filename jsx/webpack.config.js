@@ -80,6 +80,8 @@ module.exports = env => {
             externals: {
                 '@jahia/js-server-core': 'jsServerCoreLibraryBuilder.getLibrary()',
                 react: 'jsServerCoreLibraryBuilder.getSharedLibrary(\'react\')',
+                'react-i18next': 'jsServerCoreLibraryBuilder.getSharedLibrary(\'react-i18next\')',
+                i18next: 'jsServerCoreLibraryBuilder.getSharedLibrary(\'i18next\')',
                 'styled-jsx/style': 'jsServerCoreLibraryBuilder.getSharedLibrary(\'styled-jsx\')'
             },
             resolve: {
