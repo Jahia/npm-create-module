@@ -14,8 +14,7 @@
   },
   "jahia": {
     "module-dependencies": "default",
-    "module-type": "",
-    "module-type-comment": "Use templatesSet in the module type to declare a template set",
+    "module-type": "templateSet",
     "server": "dist/main.js",
     "static-resources": "/css,/images,/javascript,/locales"
   },
