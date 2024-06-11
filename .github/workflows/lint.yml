@@ -31,6 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - run: corepack enable
       - run: yarn set version stable
       - run: yarn
       - run: yarn jahia-pack
