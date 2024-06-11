@@ -18,7 +18,7 @@ fs.readdirSync(componentsDir).forEach(file => {
 });
 const moduleName = '$$MODULE_NAME$$';
 
-module.exports = env => {   
+module.exports = env => {
     let configs = [
         {
             entry: {
@@ -118,7 +118,7 @@ module.exports = env => {
                                 loader: 'css-loader',
                                 options: {
                                     modules: true,
-                                    localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                                    localIdentName: '[path][name]__[local]--[hash:base64:5]'
                                 }
                             },
                             'sass-loader'
