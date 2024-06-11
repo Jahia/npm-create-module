@@ -18,14 +18,15 @@ fs.readdirSync(componentsDir).forEach(file => {
 });
 const moduleName = '$$MODULE_NAME$$';
 
-module.exports = env => {
+module.exports = env => {   
     let configs = [
         {
             entry: {
                 [moduleName]: path.resolve(__dirname, './src/client/index')
             },
             output: {
-                path: path.resolve(__dirname, 'javascript/client')
+                path: path.resolve(__dirname, 'javascript/client'),
+                chunkFilename: '[name].[chunkhash:6].js'
             },
             resolve: {
                 mainFields: ['module', 'main'],
@@ -116,7 +117,8 @@ module.exports = env => {
                             {
                                 loader: 'css-loader',
                                 options: {
-                                    modules: true
+                                    modules: true,
+                                    localIdentName: "[path][name]__[local]--[hash:base64:5]",
                                 }
                             },
                             'sass-loader'
