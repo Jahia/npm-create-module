@@ -145,7 +145,6 @@ module.exports = env => {
         }
     ];
 
-
     if (env.deploy) {
         const webpackShellPlugin = new WebpackShellPluginNext({
             onAfterDone: {
@@ -157,6 +156,7 @@ module.exports = env => {
         if (!config.plugins) {
             config.plugins = [];
         }
+
         config.plugins.push(webpackShellPlugin);
     }
 
