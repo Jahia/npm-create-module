@@ -145,18 +145,18 @@ module.exports = env => {
         }
     ];
 
-    const webpackShellPlugin = new WebpackShellPluginNext({
-        onAfterDone: {
-            scripts: ['yarn jahia-deploy pack']
-        }
-    });
 
     if (env.deploy) {
+        const webpackShellPlugin = new WebpackShellPluginNext({
+            onAfterDone: {
+                scripts: ['yarn jahia-deploy pack']
+            }
+        });
+
         let config = configs[configs.length - 1];
         if (!config.plugins) {
             config.plugins = [];
         }
-
         config.plugins.push(webpackShellPlugin);
     }
 
