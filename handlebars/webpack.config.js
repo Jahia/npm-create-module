@@ -15,6 +15,7 @@ module.exports = env => {
             handlebars: 'jsServerCoreLibraryBuilder.getSharedLibrary(\'handlebars\')'
         },
         plugins: [
+            // This plugin help you to attach extra files or dirs to webpack's watch system
             new ExtraWatchWebpackPlugin({
                 files: [
                     'src/**/*',
@@ -37,6 +38,7 @@ module.exports = env => {
 
     if (env.deploy) {
         config.plugins.push(
+            // This plugin allows you to run any shell commands before or after webpack builds.
             new WebpackShellPluginNext({
                 onAfterDone: {
                     scripts: ['yarn jahia-deploy pack']
