@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=development --env deploy",
-    "build:production": "webpack --mode=production --env deploy",
-    "deploy": "jahia-deploy pack",
-    "watch": "yarn build --watch",
+    "build": "webpack --mode=development --env pack",
+    "build:production": "webpack --mode=production --env pack",
+    "deploy": "jahia-deploy",
+    "watch": "webpack --mode=development --env deploy --watch",
     "lint": "eslint .",
     "test": "yarn lint",
     "postinstall": "yarn dlx @yarnpkg/sdks vscode"
@@ -23,9 +23,9 @@
     "@jahia/data-helper": "1.0.4",
     "@jahia/js-server-core": "^0.0.7",
     "graphql": "^16.7.1",
+    "i18next": "^23.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "i18next": "^23.10.1",
     "react-i18next": "^14.1.0"
   },
   "devDependencies": {
