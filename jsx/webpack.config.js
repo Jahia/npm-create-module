@@ -147,7 +147,6 @@ module.exports = env => {
         }
     ];
 
-
     let config = configs[configs.length - 1];
     if (!config.plugins) {
         config.plugins = [];
