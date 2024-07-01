@@ -22,7 +22,7 @@ module.exports = env => {
     let configs = [
         {
             entry: {
-                [moduleName]: path.resolve(__dirname, './src/client')
+                [moduleName]: path.resolve(__dirname, './src/client/index')
             },
             output: {
                 path: path.resolve(__dirname, 'javascript/client'),
@@ -77,9 +77,6 @@ module.exports = env => {
             },
             output: {
                 path: path.resolve(__dirname, 'dist')
-                // path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
-                // filename: '[name].asset-webpack-server.bundle.js',
-                // chunkFilename: '[name].[chunkhash:6].js'
             },
             externals: {
                 '@jahia/js-server-core': 'jsServerCoreLibraryBuilder.getLibrary()',
