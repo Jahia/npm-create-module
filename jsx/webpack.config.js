@@ -25,7 +25,7 @@ module.exports = env => {
                 [moduleName]: path.resolve(__dirname, './src/client/index')
             },
             output: {
-                path: path.resolve(__dirname, 'javascript/client'),
+                path: path.resolve(__dirname, 'javascript/client')
             },
             resolve: {
                 mainFields: ['module', 'main'],
@@ -116,7 +116,7 @@ module.exports = env => {
                             {
                                 loader: 'css-loader',
                                 options: {
-                                    modules: true,
+                                    modules: true
                                 }
                             },
                             'sass-loader'
