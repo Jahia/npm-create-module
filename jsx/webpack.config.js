@@ -26,7 +26,6 @@ module.exports = env => {
             },
             output: {
                 path: path.resolve(__dirname, 'javascript/client'),
-                chunkFilename: '[name].[chunkhash:6].js'
             },
             resolve: {
                 mainFields: ['module', 'main'],
@@ -118,7 +117,6 @@ module.exports = env => {
                                 loader: 'css-loader',
                                 options: {
                                     modules: true,
-                                    localIdentName: '[path][name]__[local]--[hash:base64:5]'
                                 }
                             },
                             'sass-loader'
