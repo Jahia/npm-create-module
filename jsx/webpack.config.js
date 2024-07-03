@@ -3,8 +3,6 @@ const path = require('path');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const deps = require('./package.json').dependencies;
 
@@ -146,55 +144,6 @@ module.exports = env => {
             ],
             devtool: 'inline-source-map',
             mode: 'development'
-        },
-        // Config for static resources, remove if not needed :
-        {
-            entry: {
-                main: {
-                    import: path.resolve(__dirname, 'src/javascript/jqueryWebpackDemo'),
-                }
-            },
-            output: {
-                path: path.resolve(__dirname, 'dist/'),
-                filename: '[name].asset-webpack-external.bundle.js',
-                chunkFilename: '[name].asset-webpack-external.[chunkhash:6].js'
-            },
-            module: {
-                rules: [
-                    {
-                        test: /\.css$/i,
-                        use: ["style-loader","css-loader"],
-                    },
-                    {
-                        test: /\.s[ac]ss$/i,
-                        use: [
-                            'style-loader',
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    modules: true
-                                }
-                            },
-                            'sass-loader'
-                        ]
-                    }
-                ]
-            },
-            plugins: [
-                new CleanWebpackPlugin({verbose: false}),
-                new CopyWebpackPlugin({patterns: [{from: './package.json', to: ''}]}),
-            ],
-            resolve: {
-                alias: {
-                    'jquery': 'jquery/src/jquery',
-                    'jquery-ui': 'jquery-ui/dist/jquery-ui'
-                },
-                modules: [
-                    path.resolve(__dirname, 'src/javascript'),
-                    path.resolve(__dirname, 'node_modules')
-                ]
-            },
-            mode: argv.mode || 'development'
         }
     ];
 
