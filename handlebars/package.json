@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=development",
+    "build": "webpack --mode=development --env pack",
+    "build:production": "webpack --mode=production --env pack",
     "deploy": "jahia-deploy",
-    "watch": "yarn build --env deploy=true --watch",
+    "watch": "webpack --mode=development --env deploy --watch",
     "lint": "eslint .",
     "test": "yarn lint",
     "postinstall": "yarn dlx @yarnpkg/sdks vscode"
   },
   "jahia": {
-    "module-dependencies" : "default",
+    "module-dependencies": "default",
     "module-type": "templatesSet",
     "server": "dist/main.js",
-    "static-resources" : "/css,/images,/javascript"
+    "static-resources": "/css,/images,/javascript"
   },
   "devDependencies": {
     "@jahia/eslint-config": "^2.1.2",
@@ -31,8 +32,8 @@
     "webpack-shell-plugin-next": "^2.3.1"
   },
   "dependencies": {
-    "handlebars": "^4.7.7",
-    "@jahia/js-server-core" : "^0.0.7"
+    "@jahia/js-server-core": "^0.0.7",
+    "handlebars": "^4.7.7"
   },
   "engines": {
     "node": ">=16.0.0",

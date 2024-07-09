@@ -52,6 +52,7 @@ module.exports = env => {
                 ]
             },
             plugins: [
+                // This plugin allows a build to provide or consume modules with other independent builds at runtime.
                 new ModuleFederationPlugin({
                     name: moduleName,
                     library: {type: 'assign', name: `window.appShell = (typeof appShell === "undefined" ? {} : appShell); window.appShell['${moduleName}']`},
@@ -125,6 +126,7 @@ module.exports = env => {
                 ]
             },
             plugins: [
+                // This plugin help you to attach extra files or dirs to webpack's watch system
                 new ExtraWatchWebpackPlugin({
                     files: [
                         'src/server/**/*',
@@ -145,18 +147,28 @@ module.exports = env => {
         }
     ];
 
-    const webpackShellPlugin = new WebpackShellPluginNext({
-        onAfterDone: {
-            scripts: ['yarn jahia-deploy pack']
-        }
-    });
+    let config = configs[configs.length - 1];
+    if (!config.plugins) {
+        config.plugins = [];
+    }
+
+    if (env.pack) {
+        // This plugin allows you to run any shell commands before or after webpack builds.
+        const webpackShellPlugin = new WebpackShellPluginNext({
+            onAfterDone: {
+                scripts: ['yarn jahia-pack']
+            }
+        });
+        config.plugins.push(webpackShellPlugin);
+    }
 
     if (env.deploy) {
-        let config = configs[configs.length - 1];
-        if (!config.plugins) {
-            config.plugins = [];
-        }
-
+        // This plugin allows you to run any shell commands before or after webpack builds.
+        const webpackShellPlugin = new WebpackShellPluginNext({
+            onAfterDone: {
+                scripts: ['yarn jahia-deploy']
+            }
+        });
         config.plugins.push(webpackShellPlugin);
     }
 
