@@ -38,7 +38,7 @@ module.exports = env => {
         devtool: 'inline-source-map'
     };
 
-    // jahia-pack is a custom jahia script that makes a tgz package of the module's bundle
+    // 'jahia-pack' is a custom jahia script that makes a tgz package of the module's bundle
     if (env.pack) {
         config.plugins.push(
             // This plugin allows you to run any shell commands before or after webpack builds.
@@ -50,7 +50,7 @@ module.exports = env => {
         );
     }
 
-    // jahia-deploy is a custom jahia script that makes a tgz package of the module's bundle and deploy it to jahia via curl.
+    // 'jahia-deploy' is a custom jahia script that makes a tgz package of the module's bundle and deploy it to jahia via curl.
     if (env.deploy) {
         config.plugins.push(
             // This plugin allows you to run any shell commands before or after webpack builds.

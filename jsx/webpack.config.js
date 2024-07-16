@@ -73,7 +73,7 @@ module.exports = env => {
             devtool: 'inline-source-map',
             mode: 'development'
         },
-         // Config for jahia's server-side source code (components using server side rendering)
+        // Config for jahia's server-side source code (components using server side rendering)
         {
             entry: {
                 main: path.resolve(__dirname, 'src/server')
@@ -156,7 +156,7 @@ module.exports = env => {
         config.plugins = [];
     }
 
-    // jahia-pack is a custom jahia script that makes a tgz package of the module's bundle
+    // 'jahia-pack' is a custom jahia script that makes a tgz package of the module's bundle
     if (env.pack) {
         // This plugin allows you to run any shell commands before or after webpack builds.
         const webpackShellPlugin = new WebpackShellPluginNext({
@@ -167,7 +167,7 @@ module.exports = env => {
         config.plugins.push(webpackShellPlugin);
     }
 
-    // jahia-deploy is a custom jahia script that makes a tgz package of the module's bundle and deploy it to jahia via curl.
+    // 'jahia-deploy' is a custom jahia script that makes a tgz package of the module's bundle and deploy it to jahia via curl.
     if (env.deploy) {
         // This plugin allows you to run any shell commands before or after webpack builds.
         const webpackShellPlugin = new WebpackShellPluginNext({
