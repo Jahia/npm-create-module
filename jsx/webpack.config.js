@@ -20,6 +20,8 @@ const moduleName = '$$MODULE_NAME$$';
 
 module.exports = env => {
     let configs = [
+        // Config for jahia's client-side components (HydrateInBrowser or RenderInBrowser), can be removed if no client side components
+        // More info here : https://academy.jahia.com/documentation/jahia/jahia-8/developer/javascript-module-development/client-side-javascript
         {
             entry: {
                 [moduleName]: path.resolve(__dirname, './src/client/index')
@@ -71,6 +73,7 @@ module.exports = env => {
             devtool: 'inline-source-map',
             mode: 'development'
         },
+         // Config for jahia's server-side source code (components using server side rendering)
         {
             entry: {
                 main: path.resolve(__dirname, 'src/server')
@@ -147,11 +150,13 @@ module.exports = env => {
         }
     ];
 
+    // Get the last config of the array :
     let config = configs[configs.length - 1];
     if (!config.plugins) {
         config.plugins = [];
     }
 
+    // jahia-pack is a custom jahia script that makes a tgz package of the module's bundle
     if (env.pack) {
         // This plugin allows you to run any shell commands before or after webpack builds.
         const webpackShellPlugin = new WebpackShellPluginNext({
@@ -162,6 +167,7 @@ module.exports = env => {
         config.plugins.push(webpackShellPlugin);
     }
 
+    // jahia-deploy is a custom jahia script that makes a tgz package of the module's bundle and deploy it to jahia via curl.
     if (env.deploy) {
         // This plugin allows you to run any shell commands before or after webpack builds.
         const webpackShellPlugin = new WebpackShellPluginNext({

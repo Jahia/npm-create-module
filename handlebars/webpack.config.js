@@ -3,6 +3,8 @@ const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 
 module.exports = env => {
+    // Config for jahia's client-side components (HydrateInBrowser or RenderInBrowser), can be removed if no client side components
+    // More info here : https://academy.jahia.com/documentation/jahia/jahia-8/developer/javascript-module-development/client-side-javascript
     const config = {
         entry: {
             main: path.resolve(__dirname, 'src/index')
@@ -36,6 +38,7 @@ module.exports = env => {
         devtool: 'inline-source-map'
     };
 
+    // jahia-pack is a custom jahia script that makes a tgz package of the module's bundle
     if (env.pack) {
         config.plugins.push(
             // This plugin allows you to run any shell commands before or after webpack builds.
@@ -47,6 +50,7 @@ module.exports = env => {
         );
     }
 
+    // jahia-deploy is a custom jahia script that makes a tgz package of the module's bundle and deploy it to jahia via curl.
     if (env.deploy) {
         config.plugins.push(
             // This plugin allows you to run any shell commands before or after webpack builds.
