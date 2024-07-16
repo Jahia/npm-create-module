@@ -20,7 +20,8 @@ const moduleName = '$$MODULE_NAME$$';
 
 module.exports = env => {
     let configs = [
-        // Config for jahia's client-side components (HydrateInBrowser or RenderInBrowser), can be removed if no client side components
+        // Config for jahia's client-side components (HydrateInBrowser or RenderInBrowser)
+        // This config can be removed if the module doesn't contain client-side components
         // More info here : https://academy.jahia.com/documentation/jahia/jahia-8/developer/javascript-module-development/client-side-javascript
         {
             entry: {
@@ -73,7 +74,8 @@ module.exports = env => {
             devtool: 'inline-source-map',
             mode: 'development'
         },
-        // Config for jahia's server-side source code (components using server side rendering)
+        // Config for jahia's server-side components (using SSR) and source code
+        // Those components have access to jahia's custom types and functions (https://academy.jahia.com/documentation/jahia/jahia-8/developer/javascript-module-development/javascript-modules-reference-documentation)
         {
             entry: {
                 main: path.resolve(__dirname, 'src/server')

@@ -3,8 +3,8 @@ const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 
 module.exports = env => {
-    // Config for jahia's client-side components (HydrateInBrowser or RenderInBrowser), can be removed if no client side components
-    // More info here : https://academy.jahia.com/documentation/jahia/jahia-8/developer/javascript-module-development/client-side-javascript
+    // Unique config for jahia's server-side source code (components using server side rendering)
+    // Those components have access to jahia's custom types and functions (https://academy.jahia.com/documentation/jahia/jahia-8/developer/javascript-module-development/javascript-modules-reference-documentation)
     const config = {
         entry: {
             main: path.resolve(__dirname, 'src/index')
