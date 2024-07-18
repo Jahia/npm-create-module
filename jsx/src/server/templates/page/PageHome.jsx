@@ -1,5 +1,5 @@
 import React from 'react';
-import {Area, AddResources} from '@jahia/js-server-core';
+import {Area, AddResources, defineJahiaComponent} from '@jahia/js-server-core';
 import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
@@ -27,9 +27,9 @@ export const PageHome = () => {
 * componentType: the component type is set to template (as opposed to view component types)
 */
 
-PageHome.jahiaComponent = { 
+PageHome.jahiaComponent = defineJahiaComponent({
     nodeType: 'jnt:page', 
     name: 'home', 
     displayName: 'Home page', 
     componentType: 'template' 
-}
+});

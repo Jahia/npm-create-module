@@ -1,5 +1,5 @@
 import React from 'react'
-import { useServerContext, getNodeProps } from '@jahia/js-server-core'
+import {useServerContext, getNodeProps, defineJahiaComponent} from '@jahia/js-server-core'
 
 export const HelloDefault = () => {
     const { currentNode } = useServerContext();
@@ -17,9 +17,9 @@ export const HelloDefault = () => {
 * displayName: The display name of the view (optional)
 * componentType: the component type is set to view (as opposed to template component types)
 */
-HelloDefault.jahiaComponent = {
+HelloDefault.jahiaComponent = defineJahiaComponent({
     name: 'default',
     nodeType: '$$MODULE_NAMESPACE$$:hello',
     displayName: 'Hello (default)',
     componentType: 'view'
-}
+});
