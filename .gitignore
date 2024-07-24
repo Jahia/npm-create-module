@@ -7,4 +7,5 @@ test-project-jsx
 .yarn/install-state.gz
 .yarn/unplugged
 .pnp*
+.yarnrc.yml
 **.tgz
