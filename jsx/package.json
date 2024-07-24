@@ -9,8 +9,7 @@
     "deploy": "jahia-deploy",
     "watch": "webpack --mode=development --env deploy --watch",
     "lint": "eslint .",
-    "test": "yarn lint",
-    "postinstall": "yarn dlx @yarnpkg/sdks vscode"
+    "test": "yarn lint"
   },
   "jahia": {
     "module-dependencies": "default",
@@ -55,5 +54,5 @@
     "node": ">=18.0.0",
     "yarn": ">=4.0.0"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.3.1"
 }
