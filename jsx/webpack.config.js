@@ -145,7 +145,7 @@ module.exports = (env, mode) => {
         configs.push({
             name: 'watch',
             mode: 'development',
-            dependencies: ['client', 'server'], // wait for all webpack configs to be done
+            dependencies: ['client', 'server'], // Wait for all webpack configs to be done
             entry: {},
             output: {},
             plugins: [
@@ -171,7 +171,7 @@ module.exports = (env, mode) => {
                         scripts: [
                             'yarn jahia-pack',
                             'yarn jahia-deploy',
-                            'sleep 5', // sleep for 5 seconds, can be adjusted
+                            'sleep 5' // Sleep for 5 seconds, can be adjusted
                         ],
                         blocking: true,
                         parallel: false
