@@ -16,7 +16,7 @@
     "module-type": "",
     "module-type-comment": "Use templatesSet in the module type to declare a template set",
     "server": "dist/main.js",
-    "static-resources": "/css,/images,/javascript,/locales"
+    "static-resources": "/css,/images,/javascript,/locales,/public,/sconfiguration"
   },
   "dependencies": {
     "@jahia/js-server-core": "^0.0.13",
