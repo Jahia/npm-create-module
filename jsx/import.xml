@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
-    <modules jcr:primaryType="jnt:modules">
-        <$$MODULE_NAME$$>
-            <home j:isHomePage="true" j:templateName="home" jcr:primaryType="jnt:page">
-            </home>
-        </$$MODULE_NAME$$>
-    </modules>
-</content>
