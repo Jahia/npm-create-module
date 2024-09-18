@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
     const {t} = useTranslation();
-    return (<>
+    return (<html lang="en">
         <head>
             <AddResources type='css' resources='styles.css' />
             <title>Home</title>
@@ -16,7 +16,7 @@ export const PageHome = () => {
                 <Area name="pagecontent" />
             </main>
         </body>
-    </>);
+    </html>);
 }
 
 PageHome.jahiaComponent = defineJahiaComponent({
