@@ -4,7 +4,9 @@ import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
     const {t} = useTranslation();
-    return (<html lang="en">
+    const {currentResource} = useServerContext();
+    const lang = currentResource.getLocale().getLanguage();
+    return (<html lang={lang}>
         <head>
             <AddResources type='css' resources='styles.css' />
             <title>Home</title>
