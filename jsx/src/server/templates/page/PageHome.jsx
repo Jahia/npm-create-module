@@ -1,10 +1,12 @@
 import React from 'react';
-import {Area, AddResources, defineJahiaComponent} from '@jahia/js-server-core';
+import {Area, AddResources, defineJahiaComponent, useServerContext} from '@jahia/js-server-core';
 import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
     const {t} = useTranslation();
-    return (<>
+    const {currentResource} = useServerContext();
+    const lang = currentResource.getLocale().getLanguage();
+    return (<html lang={lang}>
         <head>
             <AddResources type='css' resources='styles.css' />
             <title>Home</title>
@@ -16,7 +18,7 @@ export const PageHome = () => {
                 <Area name="pagecontent" />
             </main>
         </body>
-    </>);
+    </html>);
 }
 
 PageHome.jahiaComponent = defineJahiaComponent({
