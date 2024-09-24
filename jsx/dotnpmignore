@@ -6,5 +6,5 @@
 .vscode
 webpack.config.js
 README.md
-settings/README.txt
+settings/README.md
 src
