@@ -12,9 +12,9 @@ export const PageHome = () => {
             <title>Home</title>
         </head>
         <body>
-            {/* Using i18next defined in locales */}
-            <h1>{t('homeTitle')}</h1>
             <main>
+                {/* Using i18next defined in locales */}
+                <h1>{t('homeTitle')}</h1>
                 <Area name="pagecontent" />
             </main>
         </body>
@@ -22,8 +22,8 @@ export const PageHome = () => {
 }
 
 PageHome.jahiaComponent = defineJahiaComponent({
-    nodeType: 'jnt:page', 
-    name: 'home', 
-    displayName: 'Home page', 
+    nodeType: 'jnt:page',
+    name: 'home',
+    displayName: 'Home page',
     componentType: 'template'
 });
