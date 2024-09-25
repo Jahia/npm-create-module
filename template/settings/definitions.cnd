@@ -13,5 +13,5 @@
 // to see in this category.
 [$$MODULE_NAMESPACE$$mix:$$MODULE_NAMESPACE$$Components] > jmix:droppableContent, jmix:accessControllableContent mixin
 
-[$$MODULE_NAMESPACE$$:hello] > jnt:content, $$MODULE_NAMESPACE$$mix:$$MODULE_NAMESPACE$$Components
- - textHello (string) = 'Hello world !' i18n
+[$$MODULE_NAMESPACE$$:simpleContent] > jnt:content, $$MODULE_NAMESPACE$$mix:$$MODULE_NAMESPACE$$Components
+ - title (string) = 'Sample of content' i18n
