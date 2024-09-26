@@ -5,17 +5,16 @@
 import fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import replace from 'replace-in-file';
+import {replaceInFileSync} from 'replace-in-file';
 import camelCase from 'camelcase';
 import {execSync} from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const bold = "font-weight: bold";
-const normal = "font-weight: normal";
 
 // Show help if no argment is provided
-const [nodeCommand, npxCommand, projectName, moduleType = 'module', namespace  = camelCase(projectName)] = process.argv;
+// eslint-disable-next-line no-unused-vars
+const [nodeCommand, npxCommand, projectName, moduleType = 'module', namespace = camelCase(projectName)] = process.argv;
 
 if (!projectName) {
     console.log(`\x1B[1m## Usage\x1B[0m
@@ -97,19 +96,19 @@ fs.mkdirSync(path.join(projectDir, 'settings/jahia-content-editor-forms/fieldset
 const targetFiles = `${projectDir}/**`;
 
 try {
-    replace.sync({
+    replaceInFileSync({
         files: targetFiles,
         from: /\$\$MODULE_TYPE\$\$/g,
         to: camelCase(moduleType)
     });
 
-    replace.sync({
+    replaceInFileSync({
         files: targetFiles,
         from: /\$\$MODULE_NAME\$\$/g,
         to: projectName
     });
 
-    replace.sync({
+    replaceInFileSync({
         files: targetFiles,
         from: /\$\$MODULE_NAMESPACE\$\$/g,
         to: namespace
