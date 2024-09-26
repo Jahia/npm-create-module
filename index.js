@@ -11,47 +11,44 @@ import {execSync} from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const bold = "font-weight: bold";
+const normal = "font-weight: normal";
 
-// The first argument will be the project name.
-// The second argument will be the project type (handlebars or jsx)
-// The third argument is optional, it will be the namespace of the module.
-if (process.argv.length < 3) {
-    console.error('Missing module-name parameter. Ex: npx @jahia/create-module@latest module-name module-type [namespace]');
+// Show help if no argment is provided
+const [nodeCommand, npxCommand, projectName, moduleType = 'module', namespace  = camelCase(projectName)] = process.argv;
+
+if (!projectName) {
+    console.log(`\x1B[1m## Usage\x1B[0m
+
+    npx @jahia/create-module@latest project-name [module-type] [namespace-definitions]
+
+where 
+- \x1B[1mproject-name\x1B[0m (mandatory) can be anything you want to call your project
+- \x1B[1mmodule-type\x1B[0m (optional) Can be one of:
+  - \x1B[3mtemplatesSet\x1B[0m A collection of templates and components. A template set is required when creating a website.
+  - \x1B[3mmodule\x1B[0m sStandard Jahia module. This is the default value. 
+  - \x1B[3msystem\x1B[0m Critical module for the whole platform . 
+- \x1B[1mnamespace-definitions\x1B[0m (optional) The namespace used for content definitions. Default is the project name in camel case.
+`);
     process.exit(9);
 }
-
-const projectName = process.argv[2];
-const camelProjectName = camelCase(projectName);
 
 // First let's do some version checks
 console.log('Node version detected:', process.versions.node);
 const yarnVersion = execSync('yarn --version', {encoding: 'utf8'});
 console.log('Yarn version:', yarnVersion);
 
-let projectType;
-if (process.argv[3] === 'handlebars' || process.argv[3] === 'jsx') {
-    projectType = process.argv[3];
-} else {
-    console.error(`Invalid module-type parameter, should be handlebars or jsx, got:${process.argv[3]}. Ex: npx @jahia/create-module@latest module-name module-type [namespace]`);
-    process.exit(9);
-}
-
-let namespace;
-if (process.argv.length > 4) {
-    namespace = process.argv[4];
-} else {
-    namespace = camelProjectName;
-}
-
 // Create a project directory with the project name.
 const currentDir = process.cwd();
 const projectDir = path.resolve(currentDir, projectName);
 fs.mkdirSync(projectDir, {recursive: true});
 
+console.log(`Creating a new Jahia module project \x1B[1m${projectName}\x1B[0m of type \x1B[1m${moduleType}\x1B[0m and definitions namespace \x1B[1m${namespace}\x1B[0m`);
+
 // A common approach to building a starter template is to
 // create a `template` folder which will house the template
 // and the files we want to create.
-const templateDir = path.resolve(__dirname, projectType);
+const templateDir = path.resolve(__dirname, 'template');
 fs.cpSync(templateDir, projectDir, {recursive: true});
 
 // It is good practice to have dotfiles stored in the
@@ -78,22 +75,14 @@ fs.renameSync(
 
 // Rename the resource file to use the project name
 fs.renameSync(
-    path.join(projectDir, 'resources/MODULE_NAME.properties'),
-    path.join(projectDir, 'resources/' + projectName + '.properties')
+    path.join(projectDir, 'settings/resources/MODULE_NAME.properties'),
+    path.join(projectDir, 'settings/resources/' + projectName + '.properties')
 );
 
 fs.renameSync(
-    path.join(projectDir, 'resources/MODULE_NAME_fr.properties'),
-    path.join(projectDir, 'resources/' + projectName + '_fr.properties')
+    path.join(projectDir, 'settings/resources/MODULE_NAME_fr.properties'),
+    path.join(projectDir, 'settings/resources/' + projectName + '_fr.properties')
 );
-
-// Rename the resource file to use the project name
-if (process.argv[3] === 'handlebars') {
-    fs.renameSync(
-        path.join(projectDir, 'components/MODULE_NAMESPACE'),
-        path.join(projectDir, 'components/' + namespace)
-    );
-}
 
 // Create empty directories for static resources and configurations
 fs.mkdirSync(path.join(projectDir, 'css'), {recursive: true});
@@ -105,52 +94,31 @@ fs.mkdirSync(path.join(projectDir, 'settings/jahia-content-editor-forms/forms'),
 fs.mkdirSync(path.join(projectDir, 'settings/jahia-content-editor-forms/fieldsets'), {recursive: true});
 
 // Find and replace all markers with the appropriate substitution values
-const targetFiles = [
-    path.join(projectDir, 'README.md'),
-    path.join(projectDir, 'import.xml'),
-    path.join(projectDir, 'package.json'),
-    path.join(projectDir, 'definitions.cnd'),
-    path.join(projectDir, 'resources/' + projectName + '.properties'),
-    path.join(projectDir, 'resources/' + projectName + '_fr.properties')
-];
-
-if (projectType === 'jsx') {
-    targetFiles.push(path.join(projectDir, 'src/server/templates/page/PageHome.jsx'));
-    targetFiles.push(path.join(projectDir, 'src/server/views/hello/HelloDefault.jsx'));
-    targetFiles.push(path.join(projectDir, 'src/client/index.jsx'));
-    targetFiles.push(path.join(projectDir, 'webpack.config.js'));
-}
-
-if (projectType === 'handlebars') {
-    targetFiles.push(path.join(projectDir, 'components/' + namespace + '/hello/hello.cnd'));
-}
+const targetFiles = `${projectDir}/**`;
 
 try {
     replace.sync({
         files: targetFiles,
-        from: /\$\$CAMEL_MODULE_NAME\$\$/g,
-        to: camelProjectName,
-        disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
+        from: /\$\$MODULE_TYPE\$\$/g,
+        to: camelCase(moduleType)
     });
 
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAME\$\$/g,
-        to: projectName,
-        disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
+        to: projectName
     });
 
     replace.sync({
         files: targetFiles,
         from: /\$\$MODULE_NAMESPACE\$\$/g,
-        to: namespace,
-        disableGlobs: true // This is required otherwise the replaces fail under Windows (see https://jira.jahia.org/browse/BACKLOG-21353)
+        to: namespace
     });
 } catch (error) {
     console.error('Error occurred:', error);
 }
 
-console.log(`Created ${projectName} at ${projectDir}`);
+console.log(`Created \x1B[1m${projectName}\x1B[0m at \x1B[1m${projectDir}\x1B[0m`);
 console.log('Success! Your new project is ready.');
 console.log('You can now change into your project and launch "yarn" to install everything to get started.');
 console.log('---');
