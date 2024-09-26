@@ -19,7 +19,7 @@
   "dependencies": {
     "camelcase": "^8.0.0",
     "path": "^0.12.7",
-    "replace-in-file": "^7.0.1",
+    "replace-in-file": "^8.2.0",
     "semver": "^7.5.4",
     "url": "^0.11.1"
   },
@@ -34,10 +34,7 @@
   "scripts": {
     "lint": "eslint .",
     "posttest": "yarn lint",
-    "test-hbs": "rm -rf test-project-hbs && node index.js test-project-hbs handlebars && cd test-project-hbs && yarn && yarn build && yarn lint && yarn test && cd ..",
-    "test-jsx": "rm -rf test-project-jsx && node index.js test-project-jsx jsx && cd test-project-jsx && yarn && yarn build && yarn lint && yarn test && cd ..",
-    "test": "yarn test-hbs && yarn test-jsx",
-    "version": "git add README.md"
+    "test": "rm -rf test-project && node index.js test-project && cd test-project && yarn && yarn build && yarn lint && yarn test && cd .."
   },
   "engines": {
     "node": ">=18.0.0",
