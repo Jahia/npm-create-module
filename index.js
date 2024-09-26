@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 // Show help if no argment is provided
 // eslint-disable-next-line no-unused-vars
-const [nodeCommand, npxCommand, projectName, moduleType = 'module', namespace = camelCase(projectName)] = process.argv;
+const [nodeCommand, npxCommand, projectName, moduleType = 'module', namespace = camelCase(projectName || '')] = process.argv;
 
 if (!projectName) {
     console.log(`\x1B[1m## Usage\x1B[0m
