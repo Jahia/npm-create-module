@@ -1,15 +1,15 @@
-import React from 'react'
-import {useServerContext, getNodeProps, defineJahiaComponent} from '@jahia/js-server-core'
+import React from 'react';
+import {useServerContext, getNodeProps, defineJahiaComponent} from '@jahia/js-server-core';
 
 export const SimpleContentDefault = () => {
-    const { currentNode } = useServerContext();
+    const {currentNode} = useServerContext();
     const simpleContent = getNodeProps(currentNode, ['title']);
     return (
         <div>
             <h2>{simpleContent.title}</h2>
         </div>
-    )
-}
+    );
+};
 
 SimpleContentDefault.jahiaComponent = defineJahiaComponent({
     name: 'default',
