@@ -1,11 +1,10 @@
 # Intellij
-.idea
+.idea/
 *.iml
 *.ipr
 
-/node_modules
+node_modules/
 test-project
-.idea
 **.tgz
 
 #Yarn
