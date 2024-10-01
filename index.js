@@ -116,6 +116,11 @@ fs.renameSync(
     path.join(projectDir, 'settings', 'resources', projectName + '_fr.properties')
 );
 
+fs.renameSync(
+    path.join(projectDir, 'settings', 'content-types-icons', 'MODULE_NAMESPACE_simpleContent.png'),
+    path.join(projectDir, 'settings', 'content-types-icons', namespace + '_simpleContent.png')
+);
+
 // Create empty directories for static resources and configurations
 fs.mkdirSync(path.join(projectDir, 'css'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'images'), {recursive: true});
