@@ -57,6 +57,32 @@ fs.cpSync(templateDir, projectDir, {
     }
 });
 
+// Find and replace all markers with the appropriate substitution values
+// Doing it before renaming the dotfiles so they are not excluded
+const targetFiles = `${projectDir}/**`;
+
+try {
+    replaceInFileSync({
+        files: targetFiles,
+        from: /\$\$MODULE_TYPE\$\$/g,
+        to: moduleType
+    });
+
+    replaceInFileSync({
+        files: targetFiles,
+        from: /\$\$MODULE_NAME\$\$/g,
+        to: projectName
+    });
+
+    replaceInFileSync({
+        files: targetFiles,
+        from: /\$\$MODULE_NAMESPACE\$\$/g,
+        to: namespace
+    });
+} catch (error) {
+    console.error('Error occurred:', error);
+}
+
 // It is good practice to have dotfiles stored in the
 // template without the dot (so they do not get picked
 // up by the starter template repository). We can rename
@@ -98,31 +124,6 @@ fs.mkdirSync(path.join(projectDir, 'settings', 'configurations'), {recursive: tr
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'forms'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'fieldsets'), {recursive: true});
-
-// Find and replace all markers with the appropriate substitution values
-const targetFiles = `${projectDir}/**`;
-
-try {
-    replaceInFileSync({
-        files: targetFiles,
-        from: /\$\$MODULE_TYPE\$\$/g,
-        to: moduleType
-    });
-
-    replaceInFileSync({
-        files: targetFiles,
-        from: /\$\$MODULE_NAME\$\$/g,
-        to: projectName
-    });
-
-    replaceInFileSync({
-        files: targetFiles,
-        from: /\$\$MODULE_NAMESPACE\$\$/g,
-        to: namespace
-    });
-} catch (error) {
-    console.error('Error occurred:', error);
-}
 
 console.log(`Created \x1B[1m${projectName}\x1B[0m at \x1B[1m${projectDir}\x1B[0m`);
 console.log('Success! Your new project is ready.');
