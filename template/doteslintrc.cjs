@@ -25,5 +25,6 @@ module.exports = {
     },
     ignorePatterns: ['dist', 'css', 'javascript'],
     rules: {
+        'react/prop-types': 'off'
     }
 };

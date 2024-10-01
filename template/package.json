@@ -8,7 +8,7 @@
     "build:production": "webpack --mode=production && jahia-pack",
     "deploy": "jahia-deploy",
     "watch": "webpack --mode=development --watch",
-    "lint": "eslint .",
+    "lint": "eslint --ext js,jsx .",
     "test": "yarn lint"
   },
   "jahia": {
