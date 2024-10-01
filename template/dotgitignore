@@ -16,3 +16,6 @@ node_modules
 !.yarn/sdks
 !.yarn/versions
 yarn-error.log
+
+# generated .tgz file
+$$MODULE_NAME$$-*.tgz
