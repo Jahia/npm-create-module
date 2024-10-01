@@ -48,12 +48,12 @@ console.log(`Creating a new Jahia module project \x1B[1m${projectName}\x1B[0m of
 // create a `template` folder which will house the template
 // and the files we want to create.
 const templateDir = path.resolve(__dirname, 'template');
-console.log(`Copying template from ${templateDir} to ${projectDir}`);
+const isTemplatesSet = moduleType === 'templatesSet';
 fs.cpSync(templateDir, projectDir, {
     recursive: true,
     filter: src => {
         // The file template-thumbnail.png is only used for the type templatesSet
-        return (camelCase(moduleType) === 'templatesSet' || src !== path.join(templateDir, 'settings', 'template-thumbnail.png'));
+        return (isTemplatesSet || src !== path.join(templateDir, 'settings', 'template-thumbnail.png'));
     }
 });
 
@@ -106,7 +106,7 @@ try {
     replaceInFileSync({
         files: targetFiles,
         from: /\$\$MODULE_TYPE\$\$/g,
-        to: camelCase(moduleType)
+        to: moduleType
     });
 
     replaceInFileSync({
