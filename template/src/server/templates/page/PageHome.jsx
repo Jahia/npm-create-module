@@ -1,15 +1,16 @@
 import React from 'react';
-import {Area, AddResources, defineJahiaComponent, useServerContext} from '@jahia/js-server-core';
+import {AddResources, Area, defineJahiaComponent, useServerContext, useUrlBuilder} from '@jahia/js-server-core';
 import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
     const {t} = useTranslation();
     const {currentResource} = useServerContext();
+    const {buildStaticUrl} = useUrlBuilder();
     const lang = currentResource.getLocale().getLanguage();
     return (
         <html lang={lang}>
             <head>
-                <AddResources type="css" resources="styles.css"/>
+                <AddResources type="css" resources={buildStaticUrl({assetPath: 'css/styles.css'})}/>
                 <title>Home</title>
             </head>
             <body>

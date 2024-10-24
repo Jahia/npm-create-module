@@ -20,7 +20,7 @@
     "static-resources": "/icons,/images,/javascript,/locales"
   },
   "dependencies": {
-    "@jahia/js-server-core": "^0.0.13",
+    "@jahia/js-server-core": "^0.0.15",
     "graphql": "^16.7.1",
     "i18next": "^23.10.1",
     "react": "^18.2.0",
