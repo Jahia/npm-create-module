@@ -122,9 +122,9 @@ fs.renameSync(
 );
 
 // Create empty directories for static resources and configurations
-fs.mkdirSync(path.join(projectDir, 'css'), {recursive: true});
-fs.mkdirSync(path.join(projectDir, 'images'), {recursive: true});
-fs.mkdirSync(path.join(projectDir, 'javascript'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'static', 'css'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'static', 'images'), {recursive: true});
+fs.mkdirSync(path.join(projectDir, 'static', 'javascript'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'configurations'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'forms'), {recursive: true});

@@ -29,16 +29,22 @@
     "eslint": "^8.43.0",
     "eslint-plugin-jest": "latest",
     "eslint-plugin-react": "latest",
-    "eslint-plugin-react-hooks": "latest"
+    "eslint-plugin-react-hooks": "latest",
+    "jest": "^29.7.0",
+    "jest-each": "^29.7.0",
+    "tar": "^7.4.3"
   },
   "scripts": {
     "lint": "eslint .",
     "posttest": "yarn lint",
-    "test": "rm -rf test-project && node index.js test-project && cd test-project && yarn && yarn build && yarn lint && yarn test && cd .."
+    "test": "jest tests/"
   },
   "engines": {
     "node": ">=18.0.0",
     "yarn": ">=4.0.0"
+  },
+  "jest": {
+    "testTimeout": 60000
   },
   "packageManager": "yarn@4.3.1"
 }
