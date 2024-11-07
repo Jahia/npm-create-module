@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const deps = require('./package.json').dependencies;
 
@@ -25,7 +26,23 @@ const copyAsIsPatterns = filesToCopyAsIs.map(dir => ({
     from: dir,
     to: path.join(buildOutput, dir)
 }));
-module.exports = (env, mode) => {
+
+module.exports = (env, argv) => {
+    const isDevelopment = argv.mode === 'development';
+    const mode = isDevelopment ? 'development' : 'production';
+    console.log('Building in', mode, 'mode...');
+    let optimization = isDevelopment ? {} : {
+        minimizer: [
+            // This is required to make hydration working, as its implementation relies on the class name of the React component.
+            // See InBrowser.jsx in js-server-core for details
+            new TerserPlugin({
+                terserOptions: {
+                    keep_classnames: true,
+                    keep_fnames: true
+                }
+            })
+        ]
+    };
     let configs = [
         // Config for jahia's client-side components (HydrateInBrowser or RenderInBrowser)
         // This config can be removed if the module doesn't contain client-side components
@@ -55,13 +72,15 @@ module.exports = (env, mode) => {
                                     '@babel/preset-react'
                                 ],
                                 plugins: [
-                                    'styled-jsx/babel'
-                                ]
+                                    'styled-jsx/babel',
+                                    !isDevelopment && 'transform-react-remove-prop-types'
+                                ].filter(Boolean)
                             }
                         }
                     }
                 ]
             },
+            devtool: isDevelopment ? 'inline-source-map' : 'source-map',
             plugins: [
                 // This plugin allows a build to provide or consume modules with other independent builds at runtime.
                 new ModuleFederationPlugin({
@@ -78,9 +97,7 @@ module.exports = (env, mode) => {
                         i18next: {}
                     }
                 })
-            ],
-            devtool: 'inline-source-map',
-            mode: 'development'
+            ]
         },
         {
             name: 'copy-as-is',
@@ -128,8 +145,9 @@ module.exports = (env, mode) => {
                                     '@babel/preset-react'
                                 ],
                                 plugins: [
-                                    'styled-jsx/babel'
-                                ]
+                                    'styled-jsx/babel',
+                                    !isDevelopment && 'transform-react-remove-prop-types'
+                                ].filter(Boolean)
                             }
                         }
                     },
@@ -148,21 +166,20 @@ module.exports = (env, mode) => {
                     }
                 ]
             },
-            devtool: 'inline-source-map',
-            mode: 'development'
+            devtool: isDevelopment ? 'inline-source-map' : 'source-map',
+            optimization: optimization
         }
     ];
 
     // In case of watch we add a final config that will do automatic shell commands to trigger the pack and deploy scripts
     // Also an additional sleep is added to avoid watch triggering too much in a short time
     // (Feel free to adjust the sleep time according to your needs)
-    if (mode.watch) {
+    if (argv.watch) {
         // Sleep time in seconds, can be adjusted
         const sleepTime = 5;
 
         configs.push({
             name: 'watch',
-            mode: 'development',
             dependencies: ['client', 'server', 'copy-as-is'], // Wait for all webpack configs to be done
             entry: {},
             output: {},
@@ -192,11 +209,14 @@ module.exports = (env, mode) => {
         });
     }
 
-    // Ensure no default entry points are used
     configs.forEach(config => {
+        // Ensure no default entry points are used
         if (!config.entry) {
             config.entry = {};
         }
+
+        // Set the mode development/production
+        config.mode = mode;
     });
 
     return configs;
