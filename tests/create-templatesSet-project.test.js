@@ -39,7 +39,7 @@ describe('npx @jahia/create-module', () => {
         const projectPath = path.join(tempDir, projectName);
         expect(fs.existsSync(projectPath)).toBe(true);
 
-        // TODO check the replacing of the markers in the files
+        // TODO check the replacement of the markers in the files
 
         // Validate the generated project structure
         const expectedFiles = [
@@ -75,10 +75,6 @@ describe('npx @jahia/create-module', () => {
         // YARN_ENABLE_IMMUTABLE_INSTALLS=false is used as the yarn.lock file gets updated
         // Without this flag, the following error is encountered: "The lockfile would have been created by this install, which is explicitly forbidden."
         console.log(execSync('YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install').toString());
-        // TODO TEMP BEGIN
-        console.log(execSync('cp /Users/baptistegrimaud/Documents/code/jahia/javascript-components/packages/scripts/pack-project.js node_modules/@jahia/scripts/pack-project.js').toString());
-        console.log(execSync('cp /Users/baptistegrimaud/Documents/code/jahia/javascript-components/packages/scripts/deploy.js node_modules/@jahia/scripts/deploy.js').toString());
-        // TODO TEMP END
         console.log(execSync('yarn build').toString());
 
         // Make sure the tgz file is created in the dist/ folder
