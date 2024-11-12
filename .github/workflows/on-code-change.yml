@@ -1,9 +1,8 @@
-name: Lint
-# This workflow is triggered on pushes to the repository.
+name: On Code Change (PR)
+
 on:
-  push:
-    branches:
-      - "**"
+  pull_request:
+    types: [opened, reopened, synchronize]
 
 jobs:
   lint:
@@ -35,3 +34,17 @@ jobs:
       - run: yarn set version stable
       - run: yarn
       - run: yarn jahia-pack
+
+  test:
+    needs: [build]
+    name: Test
+    runs-on: ubuntu-latest
+
+    container:
+      image: node:lts-alpine
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - run: yarn install
+      - run: yarn test

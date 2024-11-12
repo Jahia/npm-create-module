@@ -4,7 +4,6 @@
 *.ipr
 
 node_modules/
-test-project
 **.tgz
 
 #Yarn
