@@ -37,7 +37,9 @@ module.exports = (env, argv) => {
             // See InBrowser.jsx in js-server-core for details
             new TerserPlugin({
                 terserOptions: {
+                    // eslint-disable-next-line camelcase
                     keep_classnames: true,
+                    // eslint-disable-next-line camelcase
                     keep_fnames: true
                 }
             })
