@@ -1,5 +1,5 @@
 import React from 'react';
-import {AddResources, Area, defineJahiaComponent, useServerContext, useUrlBuilder} from '@jahia/js-server-core';
+import {AddResources, Area, defineJahiaComponent, useServerContext, useUrlBuilder} from '@jahia/javascript-modules-library';
 import {useTranslation} from 'react-i18next';
 
 export const PageHome = () => {
