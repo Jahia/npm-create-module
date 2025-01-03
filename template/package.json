@@ -18,7 +18,7 @@
     "module-dependencies": "default",
     "module-type": "$$MODULE_TYPE$$",
     "module-type-comment": "Use templatesSet in the module type to declare a template set",
-    "server": "dist/main.js",
+    "server": "main.js",
     "static-resources": "/icons,/images,/javascript,/locales"
   },
   "dependencies": {
