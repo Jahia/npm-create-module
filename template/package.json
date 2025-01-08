@@ -22,7 +22,6 @@
     "static-resources": "/icons,/images,/javascript,/locales"
   },
   "dependencies": {
-    "@jahia/javascript-modules-library": "^0.0.4",
     "graphql": "^16.7.1",
     "i18next": "^23.10.1",
     "react": "^18.2.0",
