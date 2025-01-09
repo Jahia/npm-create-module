@@ -114,6 +114,10 @@ describe('npx @jahia/create-module', () => {
             });
             expect(entries.length).toBe(expectedFilesInArchive.length);
         });
+
+        // Make sure the package.json contains the dependency @jahia/javascript-modules-library
+        const packageJson = JSON.parse(fs.readFileSync(path.join(projectPath, 'package.json'), 'utf8'));
+        expect(packageJson.dependencies['@jahia/javascript-modules-library']).toBeDefined();
     }
     );
 });

@@ -130,6 +130,12 @@ fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms'), {recursi
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'forms'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'fieldsets'), {recursive: true});
 
+// Add the latest @jahia/javascript-modules-library
+execSync('yarn add @jahia/javascript-modules-library', {cwd: projectDir});
+const javascriptModulesLibraryInfo = execSync('yarn info @jahia/javascript-modules-library version --json', {cwd: projectDir, encoding: 'utf8'});
+const javascriptModulesLibraryInfoValue = JSON.parse(javascriptModulesLibraryInfo).value;
+console.log(`Added ${javascriptModulesLibraryInfoValue} to the project`);
+
 console.log(`Created \x1B[1m${projectName}\x1B[0m at \x1B[1m${projectDir}\x1B[0m`);
 console.log('Success! Your new project is ready.');
 console.log('You can now change into your project and launch "yarn" to install everything to get started.');
