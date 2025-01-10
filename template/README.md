@@ -1,6 +1,6 @@
 # $$MODULE_NAME$$
 
-A simple Jahia NPM module created using the NPM module starter project template
+A simple Jahia Javascript module created using the Javascript module starter project template
 
 ## Configuration
 
