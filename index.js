@@ -7,7 +7,6 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import {replaceInFileSync} from 'replace-in-file';
 import camelCase from 'camelcase';
-import {execSync} from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,8 +33,6 @@ where
 
 // First let's do some version checks
 console.log('Node version detected:', process.versions.node);
-const yarnVersion = execSync('yarn --version', {encoding: 'utf8'});
-console.log('Yarn version:', yarnVersion);
 
 // Create a project directory with the project name.
 const currentDir = process.cwd();
@@ -130,11 +127,8 @@ fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms'), {recursi
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'forms'), {recursive: true});
 fs.mkdirSync(path.join(projectDir, 'settings', 'content-editor-forms', 'fieldsets'), {recursive: true});
 
-// Add the latest @jahia/javascript-modules-library
-execSync('yarn add @jahia/javascript-modules-library', {cwd: projectDir});
-const javascriptModulesLibraryInfo = execSync('yarn info @jahia/javascript-modules-library version --json', {cwd: projectDir, encoding: 'utf8'});
-const javascriptModulesLibraryInfoValue = JSON.parse(javascriptModulesLibraryInfo).value;
-console.log(`Added ${javascriptModulesLibraryInfoValue} to the project`);
+// Add an empty yarn.lock in case any parent folder is using yarn
+fs.writeFileSync(path.join(projectDir, 'yarn.lock'), '', 'utf8');
 
 console.log(`Created \x1B[1m${projectName}\x1B[0m at \x1B[1m${projectDir}\x1B[0m`);
 console.log('Success! Your new project is ready.');
