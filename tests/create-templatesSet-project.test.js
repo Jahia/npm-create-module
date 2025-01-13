@@ -58,7 +58,8 @@ describe('npx @jahia/create-module', () => {
             'static/javascript',
             'settings/configurations',
             'settings/content-editor-forms/forms',
-            'settings/content-editor-forms/fieldsets'
+            'settings/content-editor-forms/fieldsets',
+            'yarn.lock'
         ];
         if (moduleType === 'templatesSet') {
             // This file should only exist for templates set
